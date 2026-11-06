@@ -339,7 +339,7 @@ p{margin:0}
 
     <!-- los petalos sueltos, que despues se repiten girados -->
     <path id="gi-p" d="M50 50C44.5 40 41 22 46.5 6 47.8 2.6 50 1.5 50 1.5 50 1.5 52.2 2.6 53.5 6 59 22 55.5 40 50 50Z"/>
-    <path id="ro-p" d="M50 50C36.5 46.5 27 35 29 23 30.5 13.5 38.5 8 50 8 61.5 8 69.5 13.5 71 23 73 35 63.5 46.5 50 50Z"/>
+    <path id="ro-p" d="M50 50C33 47 23 34 26 22 28.5 11.5 40 6 52.5 8 65 10 73 21 70 33 67.5 43 60 49 50 50Z"/>
     <path id="ma-p" d="M50 50C45.5 42 43.5 26 47.5 11 48.7 6.8 50 5.5 50 5.5 50 5.5 51.3 6.8 52.5 11 56.5 26 54.5 42 50 50Z"/>
 
     <symbol id="hoja" viewBox="0 0 100 100">
@@ -380,27 +380,29 @@ p{margin:0}
       <circle cx="44" cy="44" r="5" fill="#ffffff" opacity=".1"/>
     </symbol>
 
-    <!-- ROSA AMARILLA: tres vueltas que se cierran sobre el cogollo -->
+    <!-- ROSA AMARILLA: tres vueltas que envuelven, con sombra entre una y otra -->
     <symbol id="rosa" viewBox="0 0 100 100">
-      <g stroke="#dda832" stroke-opacity=".4" stroke-width="1.3" stroke-linejoin="round">
+      <g stroke="#d49c22" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round">
         <g fill="url(#ro-fuera)">
           <use href="#ro-p"/><use href="#ro-p" transform="rotate(73 50 50)"/>
           <use href="#ro-p" transform="rotate(144 50 50)"/><use href="#ro-p" transform="rotate(217 50 50)"/>
           <use href="#ro-p" transform="rotate(288 50 50)"/>
         </g>
-        <g fill="url(#ro-medio)" transform="translate(50 50) scale(.76) translate(-50 -50)">
-          <use href="#ro-p" transform="rotate(38 50 50)"/><use href="#ro-p" transform="rotate(109 50 50)"/>
-          <use href="#ro-p" transform="rotate(182 50 50)"/><use href="#ro-p" transform="rotate(253 50 50)"/>
-          <use href="#ro-p" transform="rotate(324 50 50)"/>
+        <circle cx="50" cy="50" r="36" fill="#b07a10" opacity=".14" stroke="none"/>
+        <g fill="url(#ro-medio)" transform="translate(50 50) scale(.74) translate(-50 -50)">
+          <use href="#ro-p" transform="rotate(40 50 50)"/><use href="#ro-p" transform="rotate(112 50 50)"/>
+          <use href="#ro-p" transform="rotate(184 50 50)"/><use href="#ro-p" transform="rotate(256 50 50)"/>
+          <use href="#ro-p" transform="rotate(328 50 50)"/>
         </g>
-        <g fill="url(#ro-dentro)" transform="translate(50 50) scale(.5) translate(-50 -50)">
-          <use href="#ro-p" transform="rotate(16 50 50)"/><use href="#ro-p" transform="rotate(106 50 50)"/>
-          <use href="#ro-p" transform="rotate(196 50 50)"/><use href="#ro-p" transform="rotate(286 50 50)"/>
+        <circle cx="50" cy="50" r="21" fill="#a06d0c" opacity=".16" stroke="none"/>
+        <g fill="url(#ro-dentro)" transform="translate(50 50) scale(.46) translate(-50 -50)">
+          <use href="#ro-p" transform="rotate(18 50 50)"/><use href="#ro-p" transform="rotate(138 50 50)"/>
+          <use href="#ro-p" transform="rotate(258 50 50)"/>
         </g>
       </g>
-      <g fill="none" stroke="#b67f10" stroke-linecap="round" opacity=".65">
-        <path d="M43.5 54.5c-2.8-6.5 1.6-11.8 7-11.8 6.4 0 10.2 5.9 7.4 11.2-2.7 5.2-9.6 6.3-14 2.1" stroke-width="2.3"/>
-        <path d="M47.2 49.6c1.1-2.7 4.3-3.2 5.9-.5" stroke-width="1.8"/>
+      <g fill="none" stroke="#a87410" stroke-linecap="round">
+        <path d="M42.5 55c-3.5-7.5 1.5-14 8.5-13.8 7.5.2 11.8 7 8.4 13.2-3.2 5.8-11.4 7-16 2" stroke-width="2.4" opacity=".7"/>
+        <path d="M46.6 50.4c1.3-3.2 5.2-3.7 7-.4" stroke-width="1.9" opacity=".6"/>
       </g>
     </symbol>
 
