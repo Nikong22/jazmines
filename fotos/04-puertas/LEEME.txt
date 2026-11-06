@@ -8,7 +8,7 @@ del mensaje; si no le ponés, se ve solo el texto, que está bien.
 
 NOMBRES
 -------
-    01.jpg   ... la foto de la puerta del 1 de diciembre
+    01.jpg   ... la foto de la primera puerta, la del día de la entrega
     02.jpg
     ...
     24.jpg
@@ -27,5 +27,5 @@ La foto aparece debajo del mensaje, en el ancho de la ficha, sin recortar.
 
 IDEA
 ----
-Si vas a poner pocas, las que más pegan son la del 24 (la última, la de
-Nochebuena) y alguna en el medio para cortar la seriedad.
+Si vas a poner pocas, las que más pegan son la del 24 (la última) y alguna
+en el medio para cortar la seriedad.

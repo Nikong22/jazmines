@@ -295,7 +295,7 @@ main{position:relative;z-index:1}
 <main>
   <section class="tapa">
     <div class="wrap">
-      <p class="estrella dato"><i></i><span id="mes">diciembre 2026</span><i></i></p>
+      <p class="estrella dato"><i></i><span id="mes">veinticuatro días</span><i></i></p>
       <h1>Veinticuatro puertas<span id="nombre">Mi amor</span></h1>
       <p class="ornamento" aria-hidden="true">
         <i></i>
@@ -316,7 +316,7 @@ main{position:relative;z-index:1}
           <i></i>
         </p>
         <p class="dato">cómo funciona</p>
-        <p class="dato" id="como">Cada puerta se abre el día que le toca. Las que ya abriste quedan abiertas.</p>
+        <p class="dato" id="como">Se abre una por día, empezando el día que te llegó. Las que ya abriste quedan abiertas.</p>
       </div>
     </div>
   </section>
@@ -339,7 +339,8 @@ main{position:relative;z-index:1}
 
 <script>
 /* ===================================================================
-   CALENDARIO DE ADVIENTO - 24 puertas, una por dia hasta Nochebuena.
+   24 puertas, una por dia, a partir del dia en que se lo das (inicio).
+   No depende de diciembre: si cambias la fecha de entrega, se corre todo.
    Todo el contenido se edita aca abajo.
    tipo "mensaje" -> texto comun.  tipo "vale" -> un vale canjeable.
    foto: null -> la puerta va sin imagen. Para sumarle una, pegá el archivo
@@ -347,37 +348,43 @@ main{position:relative;z-index:1}
    =================================================================== */
 var NAVIDAD = {
   nombre: "Mi amor",
-  anio: 2026,            /* el año del diciembre que corresponde */
+
+  /* EL DIA EN QUE SE LO DAS. La puerta 1 se abre ese dia y despues se abre
+     una por dia, hasta la 24. Formato año-mes-dia. */
+  inicio: "2026-12-25",
+
   vistaPrevia: true,     /* true abre las 24 para que puedas revisarlas vos.
                             PONELO EN false ANTES DE COMPARTIRLO. */
 
-  intro: "Un mensaje por día hasta Nochebuena. No se puede hacer trampa: cada puerta se abre sola el día que le toca. Lo que cae de fondo no es nieve, son pétalos de jazmín, que es lo que florece acá en diciembre.",
+  encabezado: "veinticuatro días",
+
+  intro: "Veinticuatro puertas, una por día, empezando hoy. No se puede hacer trampa: cada una se abre sola cuando le toca, así que esto va a durar unas tres semanas largas. Lo que cae de fondo no es nieve, son pétalos de jazmín.",
 
   puertas: [
-    { tipo: "mensaje", texto: "Arranca diciembre. Veinticuatro días de esto, uno por vez, para que el mes se sienta un poco menos apurado. Feliz primero.", foto: null }, /* fotos/04-puertas/01.jpg */
-    { tipo: "mensaje", texto: "Lo primero que quiero decirte es gracias. Por el año, por la paciencia y por bancarte mis manías sin hacerlas un tema.", foto: null }, /* fotos/04-puertas/02.jpg */
-    { tipo: "vale",    texto: "Un desayuno en la cama, el día que vos digas. Sin aviso previo, sin excusas.", foto: null }, /* fotos/04-puertas/03.jpg */
-    { tipo: "mensaje", texto: "Me acordé de la primera vez que cocinamos juntos y salió mal. Nos reímos tanto que terminamos pidiendo algo. Esa noche me di cuenta de que contigo hasta lo que sale mal está bien.", foto: null }, /* fotos/04-puertas/04.jpg */
-    { tipo: "mensaje", texto: "Tu manera de contar las cosas. Empezás por el final, volvés al principio, te perdés en el medio, y yo igual te escucharía todo el día.", foto: null }, /* fotos/04-puertas/05.jpg */
-    { tipo: "vale",    texto: "Elegís la película y yo no me quejo ni una sola vez. Ni al principio, ni en el medio.", foto: null }, /* fotos/04-puertas/06.jpg */
-    { tipo: "mensaje", texto: "Hoy nada más que esto: pensé en vos a las tres de la tarde, sin motivo. Me pasa bastante seguido.", foto: null }, /* fotos/04-puertas/07.jpg */
-    { tipo: "mensaje", texto: "Si alguien me preguntara qué aprendí este año, diría que aprendí a pedir ayuda. Me lo enseñaste vos, insistiendo.", foto: null }, /* fotos/04-puertas/08.jpg */
-    { tipo: "vale",    texto: "Masajes en la espalda sin que me lo tengas que pedir. Válido tres veces.", foto: null }, /* fotos/04-puertas/09.jpg */
-    { tipo: "mensaje", texto: "Diez de veinticuatro. Vas bien. Si llegaste hasta acá es porque estás volviendo todos los días, y eso me pone contento.", foto: null }, /* fotos/04-puertas/10.jpg */
-    { tipo: "mensaje", texto: "Tu risa cuando algo te agarra desprevenida. No la que usás por educación: la otra, la fea, la buena.", foto: null }, /* fotos/04-puertas/11.jpg */
-    { tipo: "vale",    texto: "Una cena afuera, donde vos quieras. Incluso en ese lugar que a mí no me gusta.", foto: null }, /* fotos/04-puertas/12.jpg */
-    { tipo: "mensaje", texto: "Los domingos con vos son mi parte favorita de la semana. Sin planes, sin reloj, con la casa hecha un desastre.", foto: null }, /* fotos/04-puertas/13.jpg */
-    { tipo: "mensaje", texto: "Me gusta que no te conformes. Que preguntes por qué. Que digas lo que piensas aunque incomode. Es raro encontrar eso.", foto: null }, /* fotos/04-puertas/14.jpg */
-    { tipo: "vale",    texto: "Un día entero sin celular, los dos. Vos elegís el día; yo apago el mío primero.", foto: null }, /* fotos/04-puertas/15.jpg */
-    { tipo: "mensaje", texto: "Hay días en que no soy fácil. Gracias por quedarte igual en esos. Lo noto siempre, aunque no lo diga en el momento.", foto: null }, /* fotos/04-puertas/16.jpg */
-    { tipo: "mensaje", texto: "Quedan ocho. Ya se siente a Navidad: el calor, la gente apurada, las luces de los vecinos. Me gusta pasar esto con vos.", foto: null }, /* fotos/04-puertas/17.jpg */
-    { tipo: "vale",    texto: "Yo lavo los platos toda una semana. Los siete días, sin recordatorios.", foto: null },   /* fotos/04-puertas/18.jpg */
-    { tipo: "mensaje", texto: "Pensé en todo lo que queremos hacer el año que viene y me entusiasmó más de lo que esperaba. Hagamos la lista juntos estos días.", foto: null }, /* fotos/04-puertas/19.jpg */
-    { tipo: "mensaje", texto: "Lo que más me gusta de nuestra casa no es la casa. Es que cuando llego, estás.", foto: null }, /* fotos/04-puertas/20.jpg */
-    { tipo: "vale",    texto: "Una siesta larga, sin despertador y sin culpa. Yo me encargo de que nadie moleste.", foto: null }, /* fotos/04-puertas/21.jpg */
-    { tipo: "mensaje", texto: "Faltan tres. Te quiero decir algo simple: elegirte fue la mejor decisión que tomé, y la vuelvo a tomar todos los días sin pensarlo mucho.", foto: null }, /* fotos/04-puertas/22.jpg */
-    { tipo: "mensaje", texto: "Mañana es Nochebuena. Hoy solamente quiero que sepas que estoy muy tranquilo de pasarla con vos, y que no cambiaría el plan por nada.", foto: null }, /* fotos/04-puertas/23.jpg */
-    { tipo: "mensaje", texto: "Llegamos. Veinticuatro días escribiéndote de a poco para terminar diciéndote lo mismo que el primero: que te amo, que gracias por el año, y que el que viene lo quiero igual de cerca. Feliz Navidad.", foto: null } /* fotos/04-puertas/24.jpg */
+    { tipo: "mensaje", texto: "Veinticuatro puertas, una por día. No se puede hacer trampa: cada una se abre sola cuando le toca, así que esto va a durar un rato. Arrancamos.", foto: null },                                                                                                              /* fotos/04-puertas/01.jpg */
+    { tipo: "mensaje", texto: "Lo primero que quiero decirte es gracias. Por el año, por la paciencia y por bancarte mis manías sin hacerlas un tema.", foto: null },                                                                                                                                       /* fotos/04-puertas/02.jpg */
+    { tipo: "vale",    texto: "Un desayuno en la cama, el día que vos digas. Sin aviso previo, sin excusas.", foto: null },                                                                                                                                                                                 /* fotos/04-puertas/03.jpg */
+    { tipo: "mensaje", texto: "Me acordé de la primera vez que cocinamos juntos y salió mal. Nos reímos tanto que terminamos pidiendo algo. Esa noche me di cuenta de que con vos hasta lo que sale mal está bien.", foto: null },                                                                          /* fotos/04-puertas/04.jpg */
+    { tipo: "mensaje", texto: "Tu manera de contar las cosas. Empezás por el final, volvés al principio, te perdés en el medio, y yo igual te escucharía todo el día.", foto: null },                                                                                                                       /* fotos/04-puertas/05.jpg */
+    { tipo: "vale",    texto: "Elegís la película y yo no me quejo ni una sola vez. Ni al principio, ni en el medio.", foto: null },                                                                                                                                                                        /* fotos/04-puertas/06.jpg */
+    { tipo: "mensaje", texto: "Hoy nada más que esto: pensé en vos a las tres de la tarde, sin motivo. Me pasa bastante seguido.", foto: null },                                                                                                                                                            /* fotos/04-puertas/07.jpg */
+    { tipo: "mensaje", texto: "Si alguien me preguntara qué aprendí este tiempo, diría que aprendí a pedir ayuda. Me lo enseñaste vos, insistiendo.", foto: null },                                                                                                                                         /* fotos/04-puertas/08.jpg */
+    { tipo: "vale",    texto: "Masajes en la espalda sin que me lo tengas que pedir. Válido tres veces.", foto: null },                                                                                                                                                                                     /* fotos/04-puertas/09.jpg */
+    { tipo: "mensaje", texto: "Diez de veinticuatro. Vas bien. Si llegaste hasta acá es porque estás volviendo todos los días, y eso me pone contento.", foto: null },                                                                                                                                      /* fotos/04-puertas/10.jpg */
+    { tipo: "mensaje", texto: "Tu risa cuando algo te agarra desprevenida. No la que usás por educación: la otra, la fea, la buena.", foto: null },                                                                                                                                                         /* fotos/04-puertas/11.jpg */
+    { tipo: "vale",    texto: "Una cena afuera, donde vos quieras. Incluso en ese lugar que a mí no me gusta.", foto: null },                                                                                                                                                                               /* fotos/04-puertas/12.jpg */
+    { tipo: "mensaje", texto: "Los domingos con vos son mi parte favorita de la semana. Sin planes, sin reloj, con la casa hecha un desastre.", foto: null },                                                                                                                                               /* fotos/04-puertas/13.jpg */
+    { tipo: "mensaje", texto: "Me gusta que no te conformes. Que preguntes por qué. Que digas lo que pensás aunque incomode. Es raro encontrar eso.", foto: null },                                                                                                                                         /* fotos/04-puertas/14.jpg */
+    { tipo: "vale",    texto: "Un día entero sin celular, los dos. Vos elegís el día; yo apago el mío primero.", foto: null },                                                                                                                                                                              /* fotos/04-puertas/15.jpg */
+    { tipo: "mensaje", texto: "Hay días en que no soy fácil. Gracias por quedarte igual en esos. Lo noto siempre, aunque no lo diga en el momento.", foto: null },                                                                                                                                          /* fotos/04-puertas/16.jpg */
+    { tipo: "mensaje", texto: "Quedan ocho. Me acostumbré a escribirte así, de a poco, y ahora no sé bien qué voy a hacer cuando se terminen.", foto: null },                                                                                                                                               /* fotos/04-puertas/17.jpg */
+    { tipo: "vale",    texto: "Yo lavo los platos toda una semana. Los siete días, sin recordatorios.", foto: null },                                                                                                                                                                                       /* fotos/04-puertas/18.jpg */
+    { tipo: "mensaje", texto: "Pensé en todo lo que queremos hacer y me entusiasmó más de lo que esperaba. Hagamos la lista juntos uno de estos días.", foto: null },                                                                                                                                       /* fotos/04-puertas/19.jpg */
+    { tipo: "mensaje", texto: "Lo que más me gusta de nuestra casa no es la casa. Es que cuando llego, estás.", foto: null },                                                                                                                                                                               /* fotos/04-puertas/20.jpg */
+    { tipo: "vale",    texto: "Una siesta larga, sin despertador y sin culpa. Yo me encargo de que nadie moleste.", foto: null },                                                                                                                                                                           /* fotos/04-puertas/21.jpg */
+    { tipo: "mensaje", texto: "Faltan tres. Te quiero decir algo simple: elegirte fue la mejor decisión que tomé, y la vuelvo a tomar todos los días sin pensarlo mucho.", foto: null },                                                                                                                    /* fotos/04-puertas/22.jpg */
+    { tipo: "mensaje", texto: "Mañana se abre la última. La escribí primero que todas las demás y la volví a escribir tres veces, así que no esperes demasiado.", foto: null },                                                                                                                             /* fotos/04-puertas/23.jpg */
+    { tipo: "mensaje", texto: "Llegamos. Veinticuatro días escribiéndote de a poco para terminar diciéndote lo mismo que el primero: que te amo, que gracias por todo este tiempo, y que lo que viene lo quiero igual de cerca.", foto: null },                                                             /* fotos/04-puertas/24.jpg */
   ]
 };
 
@@ -385,13 +392,13 @@ var NAVIDAD = {
 (function () {
   var $ = function (s) { return document.querySelector(s); };
   var reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var LLAVE = "adviento-vistas-" + NAVIDAD.anio;
+  var LLAVE = "puertas-vistas-" + NAVIDAD.inicio;
 
   var hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
 
   $("#nombre").textContent = NAVIDAD.nombre;
-  $("#mes").textContent = "diciembre " + NAVIDAD.anio;
+  $("#mes").textContent = NAVIDAD.encabezado;
   $("#intro").textContent = NAVIDAD.intro;
 
   /* las que ya miro, guardadas en su propio telefono */
@@ -404,8 +411,26 @@ var NAVIDAD = {
     try { localStorage.setItem(LLAVE, JSON.stringify(vistas)); } catch (e) {}
   }
 
-  function diaDe(n) { return new Date(NAVIDAD.anio, 11, n); }
+  /* La cuenta no arranca en diciembre sino el dia de la entrega: la puerta 1
+     se abre en NAVIDAD.inicio y de ahi en mas se abre una por dia. */
+  var inicio = new Date(NAVIDAD.inicio + "T00:00:00");
+  if (isNaN(inicio.getTime())) inicio = new Date(hoy.getTime());
+  inicio.setHours(0, 0, 0, 0);
+
+  function diaDe(n) {
+    var d = new Date(inicio.getTime());
+    d.setDate(d.getDate() + n - 1);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
   function abierta(n) { return NAVIDAD.vistaPrevia || diaDe(n).getTime() <= hoy.getTime(); }
+  function fechaLarga(d) {
+    try {
+      return d.toLocaleDateString("es-AR", { weekday: "long", day: "numeric", month: "long" });
+    } catch (e) {
+      return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+    }
+  }
 
   var reja = $("#puertas");
   var abiertas = 0, proximaN = null;
@@ -433,7 +458,7 @@ var NAVIDAD = {
     marca.className = "marca";
     if (!libre) marca.textContent = "cerrada";
     else if (esHoy) marca.textContent = "hoy";
-    else if (n === 24) marca.textContent = "nochebuena";
+    else if (n === 24) marca.textContent = "la última";
     else marca.textContent = p.tipo === "vale" ? "vale" : "abrir";
     b.appendChild(marca);
 
@@ -444,7 +469,7 @@ var NAVIDAD = {
 
     if (!libre) {
       b.disabled = true;
-      b.setAttribute("aria-label", "Puerta " + n + ": se abre el " + n + " de diciembre");
+      b.setAttribute("aria-label", "Puerta " + n + ": se abre el " + fechaLarga(diaDe(n)));
     } else {
       b.setAttribute("aria-label", "Abrir la puerta " + n);
       b.addEventListener("click", function () { abrir(n, p, b); });
@@ -473,7 +498,7 @@ var NAVIDAD = {
 
   function abrir(n, p, boton) {
     foco = document.activeElement;
-    $("#ficha-fecha").textContent = n + " de diciembre de " + NAVIDAD.anio;
+    $("#ficha-fecha").textContent = fechaLarga(diaDe(n));
     $("#ficha-dia").textContent = n;
     cuerpo.innerHTML = "";
 
