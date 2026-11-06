@@ -311,10 +311,13 @@ p{margin:0}
     </linearGradient>
 
     <linearGradient id="tu-luz" x1="18%" y1="0%" x2="82%" y2="100%">
-      <stop offset="0%" stop-color="#fce9a8"/><stop offset="100%" stop-color="#f3cd62"/>
+      <stop offset="0%" stop-color="#fdeeb5"/><stop offset="100%" stop-color="#f4d073"/>
+    </linearGradient>
+    <linearGradient id="tu-medio" x1="18%" y1="0%" x2="82%" y2="100%">
+      <stop offset="0%" stop-color="#f6d47a"/><stop offset="100%" stop-color="#e5ae35"/>
     </linearGradient>
     <linearGradient id="tu-sombra" x1="18%" y1="0%" x2="82%" y2="100%">
-      <stop offset="0%" stop-color="#eec24e"/><stop offset="100%" stop-color="#d79c23"/>
+      <stop offset="0%" stop-color="#dfa52a"/><stop offset="100%" stop-color="#bb7f13"/>
     </linearGradient>
 
     <linearGradient id="ma-petalo" x1="50%" y1="0%" x2="50%" y2="100%">
@@ -407,12 +410,15 @@ p{margin:0}
       </g>
     </symbol>
 
-    <!-- TULIPAN: la copa de tres petalos, de costado. El tallo lo pone la rama -->
+    <!-- TULIPAN: la copa con sus tres puntas bien separadas. El de atras en
+         sombra, y los dos de adelante uno iluminado y el otro a media luz -->
     <symbol id="tulipan" viewBox="0 0 100 100">
-      <path d="M50 7c11 10 17 27 17 44 0 22-7 39-17 44-10-5-17-22-17-44 0-17 6-34 17-44Z" fill="url(#tu-sombra)"/>
-      <path d="M50 95C39 88 29 69 29 49c0-16 5-31 12-40-2 19-3 37 0 54 2 15 5 27 9 32Z" fill="url(#tu-luz)"/>
-      <path d="M50 95c11-7 21-26 21-46 0-16-5-31-12-40 2 19 3 37 0 54-2 15-5 27-9 32Z" fill="url(#tu-luz)" opacity=".62"/>
-      <path d="M50 12c-3 14-4 31-3 44" stroke="#e0a82f" stroke-width="1.7" stroke-linecap="round" fill="none" opacity=".4"/>
+      <path d="M50 6C63 16 70 34 70 52c0 22-8 40-20 46-12-6-20-24-20-46 0-18 7-36 20-46Z" fill="url(#tu-sombra)"/>
+      <g stroke="#c08a18" stroke-opacity=".32" stroke-width="1.5" stroke-linejoin="round">
+        <path d="M50 98C37 90 26 70 26 48c0-17 6-33 14-42-3 21-4 41-1 59 2 15 6 27 11 33Z" fill="url(#tu-luz)"/>
+        <path d="M50 98c13-8 24-28 24-50 0-17-6-33-14-42 3 21 4 41 1 59-2 15-6 27-11 33Z" fill="url(#tu-medio)"/>
+      </g>
+      <path d="M50 14c-2 16-3 34-2 48" stroke="#cf9015" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".35"/>
     </symbol>
 
     <!-- MARGARITA: petalos color crema y el boton bien amarillo -->
@@ -465,7 +471,7 @@ p{margin:0}
       </g>
       <use href="#margarita" x="40" y="14" width="40" height="40"/>
       <use href="#girasol" x="64" y="22" width="68" height="68"/>
-      <use href="#tulipan" x="115" y="41" width="46" height="46"/>
+      <use href="#tulipan" x="113" y="38" width="50" height="50"/>
       <use href="#rosa" x="25" y="47" width="54" height="54"/>
       <use href="#capullo" x="145" y="93" width="22" height="22"/>
       <use href="#margarita" x="110" y="86" width="36" height="36"/>
@@ -515,7 +521,7 @@ p{margin:0}
         <path d="M62 74C72 66 82 60 88 56"/>
       </g>
       <use href="#girasol" x="39" y="9" width="50" height="50"/>
-      <use href="#tulipan" x="12" y="33" width="38" height="38"/>
+      <use href="#tulipan" x="10" y="31" width="42" height="42"/>
       <use href="#capullo" x="77" y="43" width="26" height="26"/>
       <g fill="none" stroke="#9cbb90" stroke-width="2.4" stroke-linecap="round">
         <path d="M57 80C57 84 57 86 57 88"/>
