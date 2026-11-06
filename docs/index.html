@@ -290,7 +290,7 @@ p{margin:0}
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden">
   <defs>
     <linearGradient id="am-petalo" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#fdf2c6"/>
+      <stop offset="0%" stop-color="#fbe9a5"/>
       <stop offset="48%" stop-color="#f9dc85"/>
       <stop offset="100%" stop-color="#edc04c"/>
     </linearGradient>
@@ -309,7 +309,7 @@ p{margin:0}
     </linearGradient>
 
     <!-- un petalo: ancho, con la punta redondeada -->
-    <path id="am-p" d="M50 50C40 42 33.5 25.5 40 12.5 43 6.2 47 3 50 3c3 0 7 3.2 10 9.5 6.5 13 0 29.5-10 37.5Z"/>
+    <path id="am-p" d="M50 50C43.5 42 38.5 26 42.5 13 44.8 6.4 48 3.5 50 3.5 52 3.5 55.2 6.4 57.5 13 61.5 26 56.5 42 50 50Z"/>
 
     <symbol id="hoja" viewBox="0 0 100 100">
       <path d="M50 4c17 15 24 33 24 46 0 17-11 32-24 46C37 82 26 67 26 50c0-13 7-31 24-46Z" fill="url(#am-hoja)"/>
@@ -319,7 +319,7 @@ p{margin:0}
 
     <!-- la flor: ocho petalos adelante y ocho corridos atras, para que tenga fondo -->
     <symbol id="flor" viewBox="0 0 100 100">
-      <g fill="url(#am-petalo-atras)" opacity=".92">
+      <g fill="url(#am-petalo-atras)" opacity=".9" transform="translate(50 50) scale(.88) translate(-50 -50)">
         <use href="#am-p" transform="rotate(23 50 50)"/>
         <use href="#am-p" transform="rotate(68 50 50)"/>
         <use href="#am-p" transform="rotate(113 50 50)"/>
@@ -339,15 +339,15 @@ p{margin:0}
         <use href="#am-p" transform="rotate(268 50 50)"/>
         <use href="#am-p" transform="rotate(313 50 50)"/>
       </g>
-      <circle cx="50" cy="50" r="13.2" fill="url(#am-centro)"/>
+      <circle cx="50" cy="50" r="10.6" fill="url(#am-centro)"/>
       <g fill="#f7e2a0" opacity=".6">
-        <circle cx="50" cy="41.6" r="1.5"/><circle cx="56" cy="44" r="1.4"/>
-        <circle cx="58.4" cy="50" r="1.5"/><circle cx="56" cy="56" r="1.4"/>
-        <circle cx="50" cy="58.4" r="1.5"/><circle cx="44" cy="56" r="1.4"/>
-        <circle cx="41.6" cy="50" r="1.5"/><circle cx="44" cy="44" r="1.4"/>
-        <circle cx="50" cy="46.8" r="1.2"/><circle cx="53" cy="52.6" r="1.1"/><circle cx="47" cy="52.6" r="1.1"/>
+        <circle cx="50" cy="43.4" r="1.3"/><circle cx="54.7" cy="45.3" r="1.2"/>
+        <circle cx="56.6" cy="50" r="1.3"/><circle cx="54.7" cy="54.7" r="1.2"/>
+        <circle cx="50" cy="56.6" r="1.3"/><circle cx="45.3" cy="54.7" r="1.2"/>
+        <circle cx="43.4" cy="50" r="1.3"/><circle cx="45.3" cy="45.3" r="1.2"/>
+        <circle cx="50" cy="47.4" r="1.1"/><circle cx="52.4" cy="51.8" r="1"/><circle cx="47.6" cy="51.8" r="1"/>
       </g>
-      <circle cx="45.2" cy="45.2" r="4.4" fill="#ffffff" opacity=".2"/>
+      <circle cx="46.4" cy="46.4" r="3.4" fill="#ffffff" opacity=".2"/>
     </symbol>
 
     <symbol id="capullo" viewBox="0 0 100 100">
