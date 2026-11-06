@@ -1,0 +1,29 @@
+LAS SUELTAS — la grilla de fotos chicas
+=======================================
+
+Sección "Todo lo que no entró en el álbum". Son hasta 9 fotos en cuadrado.
+Acá no hay años ni orden: van las que quieras.
+
+NOMBRES
+-------
+    01.jpg
+    02.jpg
+    ...
+    09.jpg
+
+EN EL CÓDIGO
+------------
+En album.html, dentro de DATOS.galeria:
+
+    { src: null, pie: "Domingo de mañana." },      /* fotos/03-galeria/01.jpg */
+
+Mové la ruta adentro de las comillas de src, y cambiá el "pie", que es el
+texto que aparece cuando ella toca la foto para verla grande.
+
+Podés poner menos de 9: borrá las líneas que sobren. O más: copiá una línea
+y seguí numerando (10.jpg, 11.jpg...). La grilla se acomoda sola.
+
+LAS FOTOS SE VEN CUADRADAS
+--------------------------
+El recorte es 1:1 y se corta desde el centro. Al tocarlas se ven enteras,
+sin recortar, así que no importa tanto como en los capítulos.

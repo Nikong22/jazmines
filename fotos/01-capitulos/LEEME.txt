@@ -1,0 +1,47 @@
+CAPÍTULOS — una foto por año
+============================
+
+Sección "El álbum de nosotros", la primera después de la portada.
+Hay un capítulo por cada año, de 2015 a 2026. Pegá acá una foto de cada uno.
+
+NOMBRES
+-------
+    2015.jpg
+    2016.jpg
+    2017.jpg
+    2018.jpg
+    2019.jpg
+    2020.jpg
+    2021.jpg
+    2022.jpg
+    2023.jpg
+    2024.jpg
+    2025.jpg
+    2026.jpg
+
+Pueden ser .jpg o .png, pero que el nombre sea el año.
+
+EN EL CÓDIGO
+------------
+En album.html, dentro de DATOS.capitulos, cada año tiene su bloque:
+
+    {
+      anio: 2015,
+      lugar: "",                     <- opcional, el lugar si querés ponerlo
+      titulo: "El primero",
+      texto: "...",
+      src: null,                     /* fotos/01-capitulos/2015.jpg */
+      pie: "..."
+    },
+
+Mové la ruta del comentario adentro de las comillas de src.
+
+Si de algún año no tenés foto, dejalo en null: se ve el recuadro vacío y el
+resto del capítulo funciona igual. Y si querés sacar un año entero, borrá
+el bloque completo entre llaves, incluida la coma del final.
+
+LAS FOTOS SE VEN VERTICALES
+---------------------------
+El recuadro es más alto que ancho (4:5). Si la foto es horizontal se va a
+recortar por los costados, así que elegí fotos donde lo importante esté
+en el centro.

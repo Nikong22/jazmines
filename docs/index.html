@@ -101,6 +101,7 @@ p{margin:0}
   font-family:var(--display);font-weight:600;font-size:clamp(2.1rem,9vw,3.1rem);
   font-variant-numeric:tabular-nums;line-height:1;color:var(--amarillo-h);
 }
+.contador .desde{font-size:.5625rem;letter-spacing:.16em;opacity:.7}
 .pista{display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:subir 1.1s .4s ease-out both}
 .pista .fl{animation:respirar 3s ease-in-out infinite}
 
@@ -231,6 +232,10 @@ p{margin:0}
   letter-spacing:.14em;color:#8e9684;
 }
 .celda:focus-visible{outline:2px solid var(--verde-h);outline-offset:2px}
+.pista-celda{
+  position:absolute;left:6px;right:6px;bottom:9px;text-align:center;
+  font-family:var(--dato);font-size:.5rem;letter-spacing:.08em;color:#b2baa6;
+}
 
 /* ---------- 6. Carta ---------- */
 .carta .wrap{display:flex;flex-direction:column;gap:1.4rem;max-width:40rem}
@@ -542,8 +547,9 @@ p{margin:0}
         <svg class="ramillete"><use href="#ramo"></use></svg>
       </p>
       <div class="contador">
-        <b id="dias">0</b>
-        <p class="dato" id="dias-txt">días juntos</p>
+        <b id="cuenta">0</b>
+        <p class="dato" id="cuenta-txt">años juntos</p>
+        <p class="dato desde" id="desde-txt">desde 2015</p>
       </div>
       <div class="pista">
         <svg class="fl" aria-hidden="true"><use href="#girasol"></use></svg>
@@ -558,9 +564,9 @@ p{margin:0}
         <p class="ornamento" aria-hidden="true">
           <svg class="ramo"><use href="#trio2"></use></svg>
         </p>
-        <p class="dato">hoja por hoja</p>
+        <p class="dato">año por año</p>
         <h2>El álbum de nosotros</h2>
-        <p class="sub">Cada foto con su fecha, su lugar y lo que tengo para decirte de ese día.</p>
+        <p class="sub">Un año por hoja, desde que empezamos. Una foto y lo que tengo para decirte de cada uno.</p>
       </div>
       <div class="album" id="album"></div>
     </div>
@@ -655,53 +661,118 @@ p{margin:0}
    =================================================================== */
 var DATOS = {
   nombre: "Mi amor",            /* el nombre de ella */
-  desde: "2021-03-14",          /* fecha en que empezaron: año-mes-dia */
+  desde: 2015,                  /* el año en que empezaron. No hace falta el día */
   selloPortada: "álbum nº 1",
 
+  /* Un capítulo por año. Si de alguno no tenés nada, borrá su bloque entero
+     (desde la llave que abre hasta la coma de la que cierra). */
   capitulos: [
     {
-      fecha: "14 mar 2021",
-      lugar: "Plaza Francia",
-      titulo: "La primera foto",
-      texto: "Esta es la primera que nos sacamos y todavía no sabíamos nada. Me acuerdo de la vuelta caminando, de que no quería que se terminara la tarde, y de pensar que me iba a acordar de ese día mucho tiempo. Tenía razón.",
+      anio: 2015,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "El primero",
+      texto: "El año en que empezó todo. No me acuerdo del día exacto y me parece bien: lo que me acuerdo es cómo me sentía volviendo a casa.",
       nota: "10 × 15 · papel mate",
-      src: null,
-      pie: "La primera, cuando todavía no sabíamos nada."
+      src: null,                  /* fotos/01-capitulos/2015.jpg */
+      pie: "Cuando no sabíamos nada."
     },
     {
-      fecha: "7 ene 2022",
-      lugar: "Ruta 40",
-      titulo: "El viaje",
-      texto: "Dos mil kilómetros, una playlist repetida hasta el cansancio y vos manejando con la ventanilla baja. Descubrí ahí que viajar con vos es más fácil que viajar solo, y eso no me había pasado nunca.",
-      nota: "10 × 15 · papel mate",
-      src: null,
-      pie: "Dos mil kilómetros y la misma playlist."
-    },
-    {
-      fecha: "2 sep 2022",
-      lugar: "Nuestra cocina",
-      titulo: "La casa",
-      texto: "El día que las cajas dejaron de ser cajas y esto empezó a ser nuestra casa. Vos ordenando los platos a tu manera, yo haciéndome el que entendía el sistema. Lo que más me gusta de acá es que está lleno de vos, y el jazmín de la entrada que ya tapa media pared.",
+      anio: 2016,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "Agarrar confianza",
+      texto: "El año en que dejamos de tener cuidado al hablar. Empezaste a decirme las cosas como son y yo empecé a escucharlas.",
       nota: "13 × 18 · papel brillante",
-      src: null,
-      pie: "El día que las cajas dejaron de ser cajas."
+      src: null,                  /* fotos/01-capitulos/2016.jpg */
+      pie: "Ya sin tanto cuidado."
     },
     {
-      fecha: "31 dic 2023",
-      lugar: "La terraza",
-      titulo: "Esa noche",
-      texto: "Faltaban diez minutos para las doce y te reías de algo que ya no me acuerdo. De la risa me acuerdo igual. Si tuviera que elegir una sola foto de todas, probablemente sea esta.",
+      anio: 2017,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "La costumbre",
+      texto: "Nada enorme pasó y por eso me gusta. Fue el año en que esto se volvió normal, en el buen sentido de la palabra.",
       nota: "10 × 15 · papel mate",
-      src: null,
-      pie: "Faltaban diez minutos para las doce."
+      src: null,                  /* fotos/01-capitulos/2017.jpg */
+      pie: "Un año tranquilo."
     },
     {
-      fecha: "hoy",
-      lugar: "Acá",
+      anio: 2018,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "El año difícil",
+      texto: "Hubo meses que no fueron fáciles. Me acuerdo igual de este año con cariño, porque fue el que me demostró que nos bancábamos.",
+      nota: "13 × 18 · papel brillante",
+      src: null,                  /* fotos/01-capitulos/2018.jpg */
+      pie: "El que costó."
+    },
+    {
+      anio: 2019,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "Otra vez arriba",
+      texto: "Salimos del pozo y encima salimos con ganas. Volvimos a hacer planes, que es lo que más extrañaba.",
+      nota: "10 × 15 · papel mate",
+      src: null,                  /* fotos/01-capitulos/2019.jpg */
+      pie: "Volviendo a planear."
+    },
+    {
+      anio: 2020,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "Encerrados",
+      texto: "Un año entero adentro, los dos. Si después de eso seguimos acá, ya está, no hay mucho más que probar.",
+      nota: "13 × 18 · papel brillante",
+      src: null,                  /* fotos/01-capitulos/2020.jpg */
+      pie: "Todo el año adentro."
+    },
+    {
+      anio: 2021,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "La puerta abierta",
+      texto: "El año de volver a salir. Todo se sentía más grande de lo que era y lo disfrutamos como si fuera la primera vez.",
+      nota: "10 × 15 · papel mate",
+      src: null,                  /* fotos/01-capitulos/2021.jpg */
+      pie: "Saliendo de nuevo."
+    },
+    {
+      anio: 2022,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "La casa",
+      texto: "El día que las cajas dejaron de ser cajas. Vos ordenando a tu manera, yo haciéndome el que entendía el sistema.",
+      nota: "13 × 18 · papel brillante",
+      src: null,                  /* fotos/01-capitulos/2022.jpg */
+      pie: "Cuando fue nuestra."
+    },
+    {
+      anio: 2023,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "Lo nuestro",
+      texto: "Para este año ya teníamos nuestras cosas: los chistes que nadie más entiende, los domingos, la forma de discutir y arreglarlo.",
+      nota: "10 × 15 · papel mate",
+      src: null,                  /* fotos/01-capitulos/2023.jpg */
+      pie: "Ya con código propio."
+    },
+    {
+      anio: 2024,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "Sin apuro",
+      texto: "Aprendí de vos que no hay que correr para todos lados. Fue el año en que empecé a disfrutar de no hacer nada al lado tuyo.",
+      nota: "13 × 18 · papel brillante",
+      src: null,                  /* fotos/01-capitulos/2024.jpg */
+      pie: "Despacio."
+    },
+    {
+      anio: 2025,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
+      titulo: "El año pasado",
+      texto: "Todavía lo tengo fresco. Si me preguntan cuál fue el mejor hasta ahora, probablemente diga este, hasta que termine el que viene.",
+      nota: "10 × 15 · papel mate",
+      src: null,                  /* fotos/01-capitulos/2025.jpg */
+      pie: "Recién ayer."
+    },
+    {
+      anio: 2026,
+      lugar: "",                  /* opcional: el lugar, si querés ponerlo */
       titulo: "Y hoy",
-      texto: "Hoy es tu cumpleaños y no se me ocurrió nada mejor que esto: juntar todo lo que fuimos en un solo lugar para que lo puedas mirar cuando quieras. Que tengas un año enorme. Yo me quedo acá.",
+      texto: "Hoy es tu cumpleaños y no se me ocurrió nada mejor que esto: juntar todo lo que fuimos en un solo lugar para que lo puedas mirar cuando quieras.",
       nota: "recién revelada",
-      src: null,
+      src: null,                  /* fotos/01-capitulos/2026.jpg */
       pie: "Hoy."
     }
   ],
@@ -722,27 +793,27 @@ var DATOS = {
   video: {
     titulo: "Esto hay que verlo con sonido",
     texto: "Subí el volumen. Dura poco pero es lo mejor que tengo.",
-    src: null,     /* el archivo de video, ej: "fotos/video.mp4" */
-    poster: null   /* opcional: una imagen de portada para el video */
+    src: null,                    /* fotos/02-video/video.mp4 */
+    poster: null                  /* fotos/02-video/portada.jpg */
   },
 
   galeria: [
-    { src: null, pie: "Domingo de mañana." },
-    { src: null, pie: "El cumpleaños del año pasado." },
-    { src: null, pie: "Cuando nos perdimos." },
-    { src: null, pie: "La foto que no te gusta." },
-    { src: null, pie: "Tu café de siempre." },
-    { src: null, pie: "La siesta." },
-    { src: null, pie: "El casamiento de tu hermana." },
-    { src: null, pie: "Esa pizza." },
-    { src: null, pie: "Una más, porque sí." }
+    { src: null, pie: "Domingo de mañana." }                            /* fotos/03-galeria/01.jpg */,
+    { src: null, pie: "Tu cumpleaños, algún año." }                     /* fotos/03-galeria/02.jpg */,
+    { src: null, pie: "Cuando nos perdimos." }                          /* fotos/03-galeria/03.jpg */,
+    { src: null, pie: "La foto que no te gusta." }                      /* fotos/03-galeria/04.jpg */,
+    { src: null, pie: "Tu café de siempre." }                           /* fotos/03-galeria/05.jpg */,
+    { src: null, pie: "La siesta." }                                    /* fotos/03-galeria/06.jpg */,
+    { src: null, pie: "El casamiento de tu hermana." }                  /* fotos/03-galeria/07.jpg */,
+    { src: null, pie: "Esa pizza." }                                    /* fotos/03-galeria/08.jpg */,
+    { src: null, pie: "Una más, porque sí." }                           /* fotos/03-galeria/09.jpg */
   ],
 
   carta: {
     titulo: "Una carta, para terminar",
     parrafos: [
       "No soy bueno diciendo estas cosas en voz alta, así que las escribí. Hoy es tu cumpleaños y lo único que quería era que tuvieras algo que se pueda mirar más de una vez.",
-      "Pasaron un montón de cosas desde la primera foto de este álbum. Algunas difíciles. Y cada vez que me acuerdo de cómo salimos, me acuerdo de que salimos juntos.",
+      "Pasaron un montón de cosas desde la primera hoja de este álbum. Algunas difíciles. Y cada vez que me acuerdo de cómo salimos, me acuerdo de que salimos juntos.",
       "Gracias por la paciencia, por las veces que insististe cuando yo no tenía ganas, y por hacer que la casa sea un lugar al que da ganas de volver.",
       "Que este año te traiga todo lo que estás buscando. Y si en algún momento te hace falta acordarte de lo que fuimos construyendo, volvé acá."
     ],
@@ -762,26 +833,27 @@ var DATOS = {
   $("#nombre").textContent = DATOS.nombre;
   $("#sello-txt").textContent = DATOS.selloPortada;
 
-  var desde = new Date(DATOS.desde + "T00:00:00");
-  var dias = Math.max(0, Math.floor((new Date() - desde) / 86400000));
-  if (!isFinite(dias)) dias = 0;
-  var elDias = $("#dias");
-  $("#dias-txt").textContent = dias === 1 ? "día juntos" : "días juntos";
+  /* No hay fecha exacta de arranque, asi que la cuenta va por anos. */
+  var anios = Math.max(0, new Date().getFullYear() - DATOS.desde);
+  if (!isFinite(anios)) anios = 0;
+  var elCuenta = $("#cuenta");
+  $("#cuenta-txt").textContent = anios === 1 ? "año juntos" : "años juntos";
+  $("#desde-txt").textContent = "desde " + DATOS.desde;
   if (reducir) {
-    elDias.textContent = dias.toLocaleString("es-AR");
+    elCuenta.textContent = anios;
   } else {
     var t0 = performance.now(), dur = 1300;
     var tick = function (t) {
       var p = Math.min(1, (t - t0) / dur);
       var e = 1 - Math.pow(1 - p, 3);
-      elDias.textContent = Math.round(dias * e).toLocaleString("es-AR");
+      elCuenta.textContent = Math.round(anios * e);
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   }
 
   /* Hueco de foto reutilizable */
-  function hueco(medio, etiqueta) {
+  function hueco(medio, etiqueta, pista) {
     var i = MEDIOS.push(medio) - 1;
     var b = document.createElement("button");
     b.type = "button";
@@ -799,7 +871,7 @@ var DATOS = {
       p.className = "falta";
       p.textContent = etiqueta;
       var s = document.createElement("span");
-      s.textContent = "poné la foto acá";
+      s.textContent = pista || "poné la foto acá";
       p.appendChild(s);
       b.appendChild(p);
     }
@@ -814,7 +886,8 @@ var DATOS = {
 
     var marco = document.createElement("div");
     marco.className = "marco";
-    marco.appendChild(hueco({ src: c.src, pie: c.pie || c.titulo }, "FOTO " + dosCifras(i + 1)));
+    marco.appendChild(hueco({ src: c.src, pie: c.pie || c.titulo },
+      String(c.anio), "fotos/01-capitulos/" + c.anio + ".jpg"));
 
     var nro = document.createElement("span");
     nro.className = "nro";
@@ -829,7 +902,7 @@ var DATOS = {
     letra.className = "letra";
     var meta = document.createElement("p");
     meta.className = "dato fecha";
-    meta.textContent = c.fecha + " · " + c.lugar;
+    meta.textContent = c.lugar ? c.anio + " · " + c.lugar : String(c.anio);
     var h3 = document.createElement("h3");
     h3.textContent = c.titulo;
     var ded = document.createElement("p");
@@ -896,7 +969,7 @@ var DATOS = {
     caja.innerHTML =
       '<div class="play"><span class="circulo">' +
       '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
-      '</span>VIDEO<span style="color:#9aa49e;font-size:.625rem;display:block">poné el archivo acá</span></div>';
+      '</span>VIDEO<span style="color:#9ba393;font-size:.5625rem;display:block;letter-spacing:.08em">fotos/02-video/video.mp4</span></div>';
   }
 
   /* Las sueltas */
@@ -914,6 +987,11 @@ var DATOS = {
       img.alt = g.pie || "";
       img.loading = "lazy";
       b.appendChild(img);
+    } else {
+      var falta = document.createElement("span");
+      falta.className = "pista-celda";
+      falta.textContent = dosCifras(i + 1) + ".jpg";
+      b.appendChild(falta);
     }
     var idx = document.createElement("span");
     idx.className = "idx";

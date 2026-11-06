@@ -1,0 +1,32 @@
+VIDEO — el de "Esto hay que verlo con sonido"
+=============================================
+
+Sección del medio del álbum. Va un solo video.
+
+NOMBRES
+-------
+    video.mp4       el video
+    portada.jpg     opcional: la imagen que se ve antes de darle play
+
+Si no ponés portada.jpg, se ve el primer cuadro del video.
+
+EN EL CÓDIGO
+------------
+En album.html, dentro de DATOS.video:
+
+    src: null,                       /* fotos/02-video/video.mp4 */
+    poster: null                     /* fotos/02-video/portada.jpg */
+
+Mové cada ruta adentro de las comillas.
+
+PESO
+----
+El recuadro es apaisado (16:9).
+
+Tratá de que no pase de 50 MB. GitHub rechaza archivos de más de 100 MB, y
+aunque entre, un video pesado tarda un montón en abrir desde el celular.
+Si te quedó largo, conviene recortarlo antes: con treinta segundos buenos
+alcanza y sobra.
+
+Si querés que lo comprima yo, decime: hace falta instalar ffmpeg primero
+(winget install ffmpeg) porque en esta máquina no está.

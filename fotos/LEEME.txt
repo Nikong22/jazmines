@@ -1,0 +1,42 @@
+CÓMO SUBIR LAS FOTOS Y LOS VIDEOS
+=================================
+
+Hay una carpeta por cada sección que lleva material. Pegá los archivos
+adentro de la que corresponda, con los nombres que dice cada LEEME.
+
+  01-capitulos/   una foto por año, de 2015 a 2026     -> album.html
+  02-video/       el video de "Esto hay que verlo"      -> album.html
+  03-galeria/     las sueltas, hasta 9 fotos            -> album.html
+  04-puertas/     fotos opcionales del adviento         -> puertas.html
+
+DESPUÉS, EN EL CÓDIGO
+---------------------
+Cada foto tiene una línea que dice  src: null.  Al lado, entre /* */, está
+escrita la ruta que le toca. Lo único que hay que hacer es moverla adentro
+de las comillas. O sea, esto:
+
+    src: null,                        /* fotos/01-capitulos/2015.jpg */
+
+se convierte en esto:
+
+    src: "fotos/01-capitulos/2015.jpg",
+
+Mientras diga null vas a ver un recuadro vacío con el nombre del archivo
+que falta. Así sabés cuál te queda por cargar sin tener que contar.
+
+PUBLICAR
+--------
+Cuando termines de pegar archivos y de cambiar los nombres, corré:
+
+    bash subir.sh
+
+Eso arma las versiones finales y las sube. Tarda un minuto en verse.
+
+CONSEJOS
+--------
+- Nombres sin espacios, sin acentos y en minúscula. "2015.jpg", no "Foto 1 (año 2015).JPG".
+- Las fotos conviene que no pasen de 1 o 2 MB cada una, si no la página tarda
+  en abrir desde el celular. Cualquier compresor online sirve.
+- Los videos en .mp4. Si pesa más de 50 MB mejor acortarlo: GitHub no deja
+  subir archivos de más de 100 MB.
+- Si una foto está de costado, giralá antes de pegarla acá.

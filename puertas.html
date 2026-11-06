@@ -333,7 +333,8 @@ main{position:relative;z-index:1}
    CALENDARIO DE ADVIENTO - 24 puertas, una por dia hasta Nochebuena.
    Todo el contenido se edita aca abajo.
    tipo "mensaje" -> texto comun.  tipo "vale" -> un vale canjeable.
-   foto: null  o  "fotos/algo.jpg" si querés sumarle imagen a esa puerta.
+   foto: null -> la puerta va sin imagen. Para sumarle una, pegá el archivo
+   en fotos/04-puertas/ y mové la ruta del comentario adentro de las comillas.
    =================================================================== */
 var NAVIDAD = {
   nombre: "Mi amor",
@@ -344,30 +345,30 @@ var NAVIDAD = {
   intro: "Un mensaje por día hasta Nochebuena. No se puede hacer trampa: cada puerta se abre sola el día que le toca. Lo que cae de fondo no es nieve, son pétalos de jazmín, que es lo que florece acá en diciembre.",
 
   puertas: [
-    { tipo: "mensaje", texto: "Arranca diciembre. Veinticuatro días de esto, uno por vez, para que el mes se sienta un poco menos apurado. Feliz primero.", foto: null },
-    { tipo: "mensaje", texto: "Lo primero que quiero decirte es gracias. Por el año, por la paciencia y por bancarte mis manías sin hacerlas un tema.", foto: null },
-    { tipo: "vale",    texto: "Un desayuno en la cama, el día que vos digas. Sin aviso previo, sin excusas.", foto: null },
-    { tipo: "mensaje", texto: "Me acordé de la primera vez que cocinamos juntos y salió mal. Nos reímos tanto que terminamos pidiendo algo. Esa noche me di cuenta de que contigo hasta lo que sale mal está bien.", foto: null },
-    { tipo: "mensaje", texto: "Tu manera de contar las cosas. Empezás por el final, volvés al principio, te perdés en el medio, y yo igual te escucharía todo el día.", foto: null },
-    { tipo: "vale",    texto: "Elegís la película y yo no me quejo ni una sola vez. Ni al principio, ni en el medio.", foto: null },
-    { tipo: "mensaje", texto: "Hoy nada más que esto: pensé en vos a las tres de la tarde, sin motivo. Me pasa bastante seguido.", foto: null },
-    { tipo: "mensaje", texto: "Si alguien me preguntara qué aprendí este año, diría que aprendí a pedir ayuda. Me lo enseñaste vos, insistiendo.", foto: null },
-    { tipo: "vale",    texto: "Masajes en la espalda sin que me lo tengas que pedir. Válido tres veces.", foto: null },
-    { tipo: "mensaje", texto: "Diez de veinticuatro. Vas bien. Si llegaste hasta acá es porque estás volviendo todos los días, y eso me pone contento.", foto: null },
-    { tipo: "mensaje", texto: "Tu risa cuando algo te agarra desprevenida. No la que usás por educación: la otra, la fea, la buena.", foto: null },
-    { tipo: "vale",    texto: "Una cena afuera, donde vos quieras. Incluso en ese lugar que a mí no me gusta.", foto: null },
-    { tipo: "mensaje", texto: "Los domingos con vos son mi parte favorita de la semana. Sin planes, sin reloj, con la casa hecha un desastre.", foto: null },
-    { tipo: "mensaje", texto: "Me gusta que no te conformes. Que preguntes por qué. Que digas lo que piensas aunque incomode. Es raro encontrar eso.", foto: null },
-    { tipo: "vale",    texto: "Un día entero sin celular, los dos. Vos elegís el día; yo apago el mío primero.", foto: null },
-    { tipo: "mensaje", texto: "Hay días en que no soy fácil. Gracias por quedarte igual en esos. Lo noto siempre, aunque no lo diga en el momento.", foto: null },
-    { tipo: "mensaje", texto: "Quedan ocho. Ya se siente a Navidad: el calor, la gente apurada, las luces de los vecinos. Me gusta pasar esto con vos.", foto: null },
-    { tipo: "vale",    texto: "Yo lavo los platos toda una semana. Los siete días, sin recordatorios.", foto: null },
-    { tipo: "mensaje", texto: "Pensé en todo lo que queremos hacer el año que viene y me entusiasmó más de lo que esperaba. Hagamos la lista juntos estos días.", foto: null },
-    { tipo: "mensaje", texto: "Lo que más me gusta de nuestra casa no es la casa. Es que cuando llego, estás.", foto: null },
-    { tipo: "vale",    texto: "Una siesta larga, sin despertador y sin culpa. Yo me encargo de que nadie moleste.", foto: null },
-    { tipo: "mensaje", texto: "Faltan tres. Te quiero decir algo simple: elegirte fue la mejor decisión que tomé, y la vuelvo a tomar todos los días sin pensarlo mucho.", foto: null },
-    { tipo: "mensaje", texto: "Mañana es Nochebuena. Hoy solamente quiero que sepas que estoy muy tranquilo de pasarla con vos, y que no cambiaría el plan por nada.", foto: null },
-    { tipo: "mensaje", texto: "Llegamos. Veinticuatro días escribiéndote de a poco para terminar diciéndote lo mismo que el primero: que te amo, que gracias por el año, y que el que viene lo quiero igual de cerca. Feliz Navidad.", foto: null }
+    { tipo: "mensaje", texto: "Arranca diciembre. Veinticuatro días de esto, uno por vez, para que el mes se sienta un poco menos apurado. Feliz primero.", foto: null }, /* fotos/04-puertas/01.jpg */
+    { tipo: "mensaje", texto: "Lo primero que quiero decirte es gracias. Por el año, por la paciencia y por bancarte mis manías sin hacerlas un tema.", foto: null }, /* fotos/04-puertas/02.jpg */
+    { tipo: "vale",    texto: "Un desayuno en la cama, el día que vos digas. Sin aviso previo, sin excusas.", foto: null }, /* fotos/04-puertas/03.jpg */
+    { tipo: "mensaje", texto: "Me acordé de la primera vez que cocinamos juntos y salió mal. Nos reímos tanto que terminamos pidiendo algo. Esa noche me di cuenta de que contigo hasta lo que sale mal está bien.", foto: null }, /* fotos/04-puertas/04.jpg */
+    { tipo: "mensaje", texto: "Tu manera de contar las cosas. Empezás por el final, volvés al principio, te perdés en el medio, y yo igual te escucharía todo el día.", foto: null }, /* fotos/04-puertas/05.jpg */
+    { tipo: "vale",    texto: "Elegís la película y yo no me quejo ni una sola vez. Ni al principio, ni en el medio.", foto: null }, /* fotos/04-puertas/06.jpg */
+    { tipo: "mensaje", texto: "Hoy nada más que esto: pensé en vos a las tres de la tarde, sin motivo. Me pasa bastante seguido.", foto: null }, /* fotos/04-puertas/07.jpg */
+    { tipo: "mensaje", texto: "Si alguien me preguntara qué aprendí este año, diría que aprendí a pedir ayuda. Me lo enseñaste vos, insistiendo.", foto: null }, /* fotos/04-puertas/08.jpg */
+    { tipo: "vale",    texto: "Masajes en la espalda sin que me lo tengas que pedir. Válido tres veces.", foto: null }, /* fotos/04-puertas/09.jpg */
+    { tipo: "mensaje", texto: "Diez de veinticuatro. Vas bien. Si llegaste hasta acá es porque estás volviendo todos los días, y eso me pone contento.", foto: null }, /* fotos/04-puertas/10.jpg */
+    { tipo: "mensaje", texto: "Tu risa cuando algo te agarra desprevenida. No la que usás por educación: la otra, la fea, la buena.", foto: null }, /* fotos/04-puertas/11.jpg */
+    { tipo: "vale",    texto: "Una cena afuera, donde vos quieras. Incluso en ese lugar que a mí no me gusta.", foto: null }, /* fotos/04-puertas/12.jpg */
+    { tipo: "mensaje", texto: "Los domingos con vos son mi parte favorita de la semana. Sin planes, sin reloj, con la casa hecha un desastre.", foto: null }, /* fotos/04-puertas/13.jpg */
+    { tipo: "mensaje", texto: "Me gusta que no te conformes. Que preguntes por qué. Que digas lo que piensas aunque incomode. Es raro encontrar eso.", foto: null }, /* fotos/04-puertas/14.jpg */
+    { tipo: "vale",    texto: "Un día entero sin celular, los dos. Vos elegís el día; yo apago el mío primero.", foto: null }, /* fotos/04-puertas/15.jpg */
+    { tipo: "mensaje", texto: "Hay días en que no soy fácil. Gracias por quedarte igual en esos. Lo noto siempre, aunque no lo diga en el momento.", foto: null }, /* fotos/04-puertas/16.jpg */
+    { tipo: "mensaje", texto: "Quedan ocho. Ya se siente a Navidad: el calor, la gente apurada, las luces de los vecinos. Me gusta pasar esto con vos.", foto: null }, /* fotos/04-puertas/17.jpg */
+    { tipo: "vale",    texto: "Yo lavo los platos toda una semana. Los siete días, sin recordatorios.", foto: null },   /* fotos/04-puertas/18.jpg */
+    { tipo: "mensaje", texto: "Pensé en todo lo que queremos hacer el año que viene y me entusiasmó más de lo que esperaba. Hagamos la lista juntos estos días.", foto: null }, /* fotos/04-puertas/19.jpg */
+    { tipo: "mensaje", texto: "Lo que más me gusta de nuestra casa no es la casa. Es que cuando llego, estás.", foto: null }, /* fotos/04-puertas/20.jpg */
+    { tipo: "vale",    texto: "Una siesta larga, sin despertador y sin culpa. Yo me encargo de que nadie moleste.", foto: null }, /* fotos/04-puertas/21.jpg */
+    { tipo: "mensaje", texto: "Faltan tres. Te quiero decir algo simple: elegirte fue la mejor decisión que tomé, y la vuelvo a tomar todos los días sin pensarlo mucho.", foto: null }, /* fotos/04-puertas/22.jpg */
+    { tipo: "mensaje", texto: "Mañana es Nochebuena. Hoy solamente quiero que sepas que estoy muy tranquilo de pasarla con vos, y que no cambiaría el plan por nada.", foto: null }, /* fotos/04-puertas/23.jpg */
+    { tipo: "mensaje", texto: "Llegamos. Veinticuatro días escribiéndote de a poco para terminar diciéndote lo mismo que el primero: que te amo, que gracias por el año, y que el que viene lo quiero igual de cerca. Feliz Navidad.", foto: null } /* fotos/04-puertas/24.jpg */
   ]
 };
 

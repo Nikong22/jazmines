@@ -1,0 +1,31 @@
+PUERTAS — fotos del calendario de adviento
+==========================================
+
+Esto es para el OTRO regalo, puertas.html (Veinticuatro Puertas).
+
+Son opcionales. Cada una de las 24 puertas puede llevar una foto además
+del mensaje; si no le ponés, se ve solo el texto, que está bien.
+
+NOMBRES
+-------
+    01.jpg   ... la foto de la puerta del 1 de diciembre
+    02.jpg
+    ...
+    24.jpg
+
+Solo las que quieras. No hace falta tenerlas todas.
+
+EN EL CÓDIGO
+------------
+En puertas.html, dentro de NAVIDAD.puertas, cada día es una línea:
+
+    { tipo: "mensaje", texto: "...", foto: null },   /* fotos/04-puertas/01.jpg */
+
+Mové la ruta adentro de las comillas de foto.
+
+La foto aparece debajo del mensaje, en el ancho de la ficha, sin recortar.
+
+IDEA
+----
+Si vas a poner pocas, las que más pegan son la del 24 (la última, la de
+Nochebuena) y alguna en el medio para cortar la seriedad.

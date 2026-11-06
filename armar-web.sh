@@ -41,6 +41,8 @@ printf "User-agent: *\nDisallow: /\n" > docs/robots.txt
 if [ -d fotos ]; then
   rm -rf docs/fotos
   cp -r fotos docs/fotos
+  # los LEEME son para vos, no para la web
+  find docs/fotos -name "LEEME.txt" -delete
   echo "  docs/fotos/ (copiada)"
 fi
 
