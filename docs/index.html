@@ -66,9 +66,9 @@ p{margin:0}
 .ornamento i{display:block;height:1px;width:clamp(16px,7vw,46px);background:linear-gradient(90deg,transparent,var(--linea))}
 .ornamento i:last-child{background:linear-gradient(90deg,var(--linea),transparent)}
 .fl{display:block;width:30px;height:30px;flex:0 0 auto}
-.ramo{display:block;flex:0 0 auto;width:clamp(120px,29vw,172px);aspect-ratio:200/82;height:auto}
-.ramillete{display:block;flex:0 0 auto;width:clamp(230px,66vw,380px);aspect-ratio:280/120;height:auto}
-.ramillete.chico{width:clamp(186px,48vw,268px)}
+.ramo{display:block;flex:0 0 auto;width:clamp(100px,24vw,140px);aspect-ratio:120/90;height:auto}
+.ramillete{display:block;flex:0 0 auto;width:clamp(168px,44vw,236px);aspect-ratio:190/205;height:auto}
+.ramillete.chico{width:clamp(126px,32vw,168px)}
 
 /* ---------- 1. Portada ---------- */
 .portada{
@@ -445,47 +445,84 @@ p{margin:0}
       <path d="M66 58c-4 14-10 24-16 30 12-2 20-14 20-26 0-2.2-1.8-4-4-4Z" fill="url(#am-hoja)"/>
     </symbol>
 
-    <!-- EL RAMO: las cuatro juntas -->
-    <symbol id="ramo" viewBox="0 0 280 120">
+    <!-- EL RAMO: los tallos salen todos del atado y las flores se abren
+         arriba, las de adelante tapando un poco a las de atras -->
+    <symbol id="ramo" viewBox="0 0 190 205">
+      <g opacity=".95">
+        <g transform="rotate(-44 32 128)"><use href="#hoja-larga" x="9" y="105" width="46" height="46"/></g>
+        <g transform="rotate(46 156 126)"><use href="#hoja-larga" x="133" y="103" width="46" height="46"/></g>
+        <g transform="rotate(-18 70 120)"><use href="#hoja" x="52" y="102" width="36" height="36"/></g>
+        <g transform="rotate(24 120 124)"><use href="#hoja" x="103" y="107" width="34" height="34"/></g>
+      </g>
+      <g fill="none" stroke="#9cbb90" stroke-width="2.6" stroke-linecap="round">
+        <path d="M88 152C76 130 62 106 54 86"/>
+        <path d="M92 152C94 124 96 92 97 74"/>
+        <path d="M96 152C112 128 130 100 138 82"/>
+        <path d="M88 152C74 122 62 78 59 52"/>
+        <path d="M95 152C108 138 120 122 126 112"/>
+        <path d="M86 153C70 142 52 126 41 116"/>
+        <path d="M97 153C116 140 140 122 152 112"/>
+      </g>
+      <use href="#margarita" x="40" y="14" width="40" height="40"/>
+      <use href="#girasol" x="64" y="22" width="68" height="68"/>
+      <use href="#tulipan" x="115" y="41" width="46" height="46"/>
+      <use href="#rosa" x="25" y="47" width="54" height="54"/>
+      <use href="#capullo" x="145" y="93" width="22" height="22"/>
+      <use href="#margarita" x="110" y="86" width="36" height="36"/>
+      <use href="#capullo" x="24" y="98" width="24" height="24"/>
+      <g fill="none" stroke="#9cbb90" stroke-width="2.6" stroke-linecap="round">
+        <path d="M86 160C85 174 85 187 86 198"/>
+        <path d="M92 160C92 175 92 188 92 199"/>
+        <path d="M97 160C98 174 99 187 99 197"/>
+      </g>
+      <rect x="79" y="147" width="26" height="14" rx="3.5" fill="#f3d178"/>
+      <path d="M79 154h26" stroke="#d9a93c" stroke-width="1.3" opacity=".55" fill="none"/>
+      <path d="M80 160c-6 5-10 12-9 19 4-6 8-12 14-16Z" fill="#edc04c"/>
+      <path d="M104 160c6 5 10 12 9 19-4-6-8-12-14-16Z" fill="#f6dc96"/>
+    </symbol>
+
+    <!-- los ramitos chicos que cortan cada seccion: tres flores atadas,
+         no una rama con flores clavadas -->
+    <symbol id="trio" viewBox="0 0 120 90">
+      <g opacity=".95">
+        <g transform="rotate(-40 24 56)"><use href="#hoja" x="7" y="39" width="34" height="34"/></g>
+        <g transform="rotate(44 98 58)"><use href="#hoja-larga" x="82" y="42" width="32" height="32"/></g>
+      </g>
       <g fill="none" stroke="#9cbb90" stroke-width="2.4" stroke-linecap="round">
-        <path d="M6 112C64 118 140 106 212 72"/>
-        <path d="M60 112C62 102 60 94 56 88"/>
-        <path d="M104 108C104 96 100 86 94 80"/>
-        <path d="M152 100C154 86 158 74 164 64"/>
-        <path d="M206 86C211 78 217 71 223 66"/>
+        <path d="M58 74C52 66 44 58 38 53"/>
+        <path d="M60 74C62 62 63 52 64 45"/>
+        <path d="M62 74C72 66 82 60 88 56"/>
       </g>
-      <g transform="rotate(-34 36 98)"><use href="#hoja" x="22" y="84" width="28" height="28"/></g>
-      <g transform="rotate(30 128 96)"><use href="#hoja" x="113" y="81" width="30" height="30"/></g>
-      <g transform="rotate(16 246 92)"><use href="#hoja-larga" x="230" y="74" width="32" height="32"/></g>
-      <use href="#capullo" x="44" y="62" width="24" height="24"/>
-      <use href="#margarita" x="64" y="52" width="44" height="44"/>
-      <use href="#rosa" x="96" y="26" width="56" height="56"/>
-      <use href="#girasol" x="140" y="2" width="74" height="74"/>
-      <use href="#tulipan" x="200" y="20" width="48" height="48"/>
-      <use href="#margarita" x="232" y="58" width="34" height="34"/>
+      <use href="#rosa" x="40" y="12" width="48" height="48"/>
+      <use href="#margarita" x="15" y="33" width="36" height="36"/>
+      <use href="#capullo" x="77" y="43" width="26" height="26"/>
+      <g fill="none" stroke="#9cbb90" stroke-width="2.4" stroke-linecap="round">
+        <path d="M57 80C57 84 57 86 57 88"/>
+        <path d="M63 80C63 84 63 86 63 88"/>
+      </g>
+      <rect x="53" y="72" width="15" height="9" rx="2.5" fill="#f3d178"/>
+      <path d="M53 76.5h15" stroke="#d9a93c" stroke-width="1" opacity=".5" fill="none"/>
     </symbol>
 
-    <!-- las ramitas chicas que cortan cada seccion -->
-    <symbol id="rama" viewBox="0 0 200 82">
-      <g fill="none" stroke="#9cbb90" stroke-width="2.2" stroke-linecap="round">
-        <path d="M4 73C40 77 88 71 134 45"/><path d="M86 70C92 61 96 53 100 47"/><path d="M44 74C48 68 53 62 57 58"/>
+    <symbol id="trio2" viewBox="0 0 120 90">
+      <g opacity=".95">
+        <g transform="rotate(-38 26 58)"><use href="#hoja-larga" x="9" y="41" width="34" height="34"/></g>
+        <g transform="rotate(46 97 59)"><use href="#hoja" x="81" y="43" width="32" height="32"/></g>
       </g>
-      <g transform="rotate(-36 34 60)"><use href="#hoja" x="20" y="46" width="28" height="28"/></g>
-      <g transform="rotate(28 76 64)"><use href="#hoja" x="61" y="49" width="30" height="30"/></g>
-      <use href="#capullo" x="47" y="46" width="23" height="23"/>
-      <use href="#margarita" x="78" y="23" width="46" height="46"/>
-      <use href="#rosa" x="118" y="5" width="64" height="64"/>
-    </symbol>
-
-    <symbol id="rama2" viewBox="0 0 200 82">
-      <g fill="none" stroke="#9cbb90" stroke-width="2.2" stroke-linecap="round">
-        <path d="M4 73C40 77 88 71 134 45"/><path d="M84 72C89 67 93 63 95 60"/><path d="M44 74C48 68 53 62 57 58"/>
+      <g fill="none" stroke="#9cbb90" stroke-width="2.4" stroke-linecap="round">
+        <path d="M58 74C50 66 40 58 33 54"/>
+        <path d="M60 74C62 62 63 50 64 42"/>
+        <path d="M62 74C72 66 82 60 88 56"/>
       </g>
-      <g transform="rotate(-36 34 60)"><use href="#hoja" x="20" y="46" width="28" height="28"/></g>
-      <g transform="rotate(26 74 66)"><use href="#hoja-larga" x="59" y="51" width="30" height="30"/></g>
-      <use href="#capullo" x="47" y="46" width="23" height="23"/>
-      <use href="#tulipan" x="74" y="18" width="44" height="44"/>
-      <use href="#girasol" x="116" y="4" width="66" height="66"/>
+      <use href="#girasol" x="39" y="9" width="50" height="50"/>
+      <use href="#tulipan" x="12" y="33" width="38" height="38"/>
+      <use href="#capullo" x="77" y="43" width="26" height="26"/>
+      <g fill="none" stroke="#9cbb90" stroke-width="2.4" stroke-linecap="round">
+        <path d="M57 80C57 84 57 86 57 88"/>
+        <path d="M63 80C63 84 63 86 63 88"/>
+      </g>
+      <rect x="53" y="72" width="15" height="9" rx="2.5" fill="#f3d178"/>
+      <path d="M53 76.5h15" stroke="#d9a93c" stroke-width="1" opacity=".5" fill="none"/>
     </symbol>
   </defs>
 </svg>
@@ -496,9 +533,7 @@ p{margin:0}
       <p class="sello dato"><i></i><span id="sello-txt">álbum nº 1</span><i></i></p>
       <h1>Feliz cumpleaños<em id="nombre">Mi amor</em></h1>
       <p class="ornamento" aria-hidden="true">
-        <i></i>
         <svg class="ramillete"><use href="#ramo"></use></svg>
-        <i></i>
       </p>
       <div class="contador">
         <b id="dias">0</b>
@@ -515,8 +550,7 @@ p{margin:0}
     <div class="wrap">
       <div class="titulo-seccion">
         <p class="ornamento" aria-hidden="true">
-          <svg class="ramo"><use href="#rama2"></use></svg>
-          <i></i>
+          <svg class="ramo"><use href="#trio2"></use></svg>
         </p>
         <p class="dato">hoja por hoja</p>
         <h2>El álbum de nosotros</h2>
@@ -530,8 +564,7 @@ p{margin:0}
     <div class="wrap">
       <div class="titulo-seccion">
         <p class="ornamento" aria-hidden="true">
-          <svg class="ramo"><use href="#rama"></use></svg>
-          <i></i>
+          <svg class="ramo"><use href="#trio"></use></svg>
         </p>
         <p class="dato">abrí los que quieras</p>
         <h2>Diez cosas que amo de vos</h2>
@@ -545,8 +578,7 @@ p{margin:0}
     <div class="wrap">
       <div class="titulo-seccion">
         <p class="ornamento" aria-hidden="true">
-          <svg class="ramo"><use href="#rama2"></use></svg>
-          <i></i>
+          <svg class="ramo"><use href="#trio2"></use></svg>
         </p>
         <p class="dato">para ver</p>
         <h2 id="video-titulo">Esto hay que verlo con sonido</h2>
@@ -562,8 +594,7 @@ p{margin:0}
     <div class="wrap">
       <div class="titulo-seccion">
         <p class="ornamento" aria-hidden="true">
-          <svg class="ramo"><use href="#rama"></use></svg>
-          <i></i>
+          <svg class="ramo"><use href="#trio"></use></svg>
         </p>
         <p class="dato">las sueltas</p>
         <h2>Todo lo que no entró en el álbum</h2>
@@ -580,7 +611,6 @@ p{margin:0}
       <div class="cuerpo-carta" id="carta-cuerpo"></div>
       <p class="ornamento" style="justify-content:flex-start" aria-hidden="true">
         <svg class="ramillete chico"><use href="#ramo"></use></svg>
-        <i></i>
       </p>
       <p class="cierre" id="carta-firma"></p>
       <button class="boton" id="btn-deseo" type="button">Apagar las velitas</button>
