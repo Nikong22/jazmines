@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Nuestro Álbum</title>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Karla:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+/* Layout: un album de papel. Cada capitulo es una foto pegada en la hoja con su
+   nota al pie; las secciones se separan en bandas pastel: celeste, verde, violeta, amarillo.
+   Un solo tema: papel claro. */
+:root{
+  color-scheme: light;
+  --papel:#fbf9f3;
+  --papel-2:#ffffff;
+  --tinta:#3d4a44;
+  --tinta-tenue:#7f8d86;
+  --linea:#e7e1d5;
+
+  --celeste:#aadcea;
+  --celeste-h:#3f8aa7;
+  --amarillo:#f8d976;
+  --amarillo-h:#a97f14;
+  --verde:#b9dcc0;
+  --verde-h:#49825c;
+  --violeta:#cbb8e6;
+  --violeta-h:#6a4f9c;
+  --jazmin:#ffffff;
+
+  --display:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --cuerpo:"Karla", "Segoe UI", system-ui, sans-serif;
+  --dato:"DM Mono", ui-monospace, "Courier New", monospace;
+
+  --max:62rem;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--cuerpo);
+  font-size:1.0625rem;
+  line-height:1.68;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;line-height:1.12;text-wrap:balance;letter-spacing:-.005em}
+p{margin:0}
+.dato{
+  font-family:var(--dato);font-size:.6875rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tinta-tenue);
+}
+
+/* ---------- Jazmines y flores ---------- */
+.ornamento{display:flex;align-items:center;justify-content:center;gap:.5rem}
+.ornamento i{display:block;height:1px;width:clamp(16px,7vw,46px);background:linear-gradient(90deg,transparent,var(--linea))}
+.ornamento i:last-child{background:linear-gradient(90deg,var(--linea),transparent)}
+.fl{display:block;width:20px;height:20px;flex:0 0 auto}
+.fl.j{color:var(--celeste)}
+.fl.v{color:var(--violeta)}
+.fl.g{color:var(--verde)}
+.fl.a{width:16px;height:16px}
+
+/* ---------- 1. Portada ---------- */
+.portada{
+  position:relative;
+  padding-block:clamp(3rem,10vh,5.5rem) clamp(3rem,8vh,4.5rem);
+  background:
+    radial-gradient(120% 90% at 50% -5%, #ddf1f7 0%, rgba(221,241,247,0) 62%),
+    var(--papel);
+}
+.portada .wrap{display:flex;flex-direction:column;gap:1.5rem;align-items:center;text-align:center}
+.sello{display:flex;align-items:center;gap:.6rem;animation:subir .9s ease-out both}
+.sello i{display:block;width:26px;height:1px;background:var(--celeste-h);opacity:.55}
+.portada h1{
+  font-size:clamp(2.7rem,11.5vw,5.5rem);
+  animation:subir 1s .1s ease-out both;
+}
+.portada h1 em{
+  display:block;font-style:italic;font-weight:400;color:var(--violeta-h);
+  font-size:.5em;margin-top:.3em;
+}
+.contador{
+  display:flex;flex-direction:column;align-items:center;gap:.3rem;
+  padding:1.2rem 1.9rem;border-radius:3px;
+  background:var(--papel-2);
+  border:1px solid var(--linea);
+  box-shadow:0 14px 34px -28px rgba(61,74,68,.6);
+  animation:subir 1s .25s ease-out both;
+}
+.contador b{
+  font-family:var(--display);font-weight:600;font-size:clamp(2.1rem,9vw,3.1rem);
+  font-variant-numeric:tabular-nums;line-height:1;color:var(--celeste-h);
+}
+.pista{display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:subir 1.1s .4s ease-out both}
+.pista .fl{animation:respirar 3s ease-in-out infinite}
+
+/* ---------- Bandas ---------- */
+.banda{position:relative;padding-block:clamp(2.75rem,7vw,4.5rem)}
+.banda.verde{background:linear-gradient(180deg,#f2f8f2,#eef6ef)}
+.banda.violeta{background:linear-gradient(180deg,#f6f2fb,#f2edf9)}
+.banda.amarilla{background:linear-gradient(180deg,#fdf8e9,#fcf4de)}
+.banda::before,.banda::after{
+  content:"";position:absolute;left:0;right:0;height:1px;background:var(--linea);
+}
+.banda::before{top:0}
+.banda::after{bottom:0}
+
+.titulo-seccion{display:flex;flex-direction:column;gap:.55rem;margin-bottom:clamp(2rem,5vw,3rem)}
+.titulo-seccion .ornamento{justify-content:flex-start;margin-bottom:.1rem}
+.titulo-seccion h2{font-size:clamp(1.8rem,6vw,2.7rem)}
+.titulo-seccion p.sub{color:var(--tinta-tenue);max-width:34rem;font-size:.9375rem}
+
+/* ---------- 2. Capitulos ---------- */
+.album{display:flex;flex-direction:column;gap:clamp(2.5rem,7vw,4.5rem)}
+.cuadro{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(1.25rem,4vw,2.75rem);align-items:center;
+}
+.cuadro:nth-child(even) .marco{order:2}
+.cuadro.c1{--acento:var(--celeste);--acento-h:var(--celeste-h)}
+.cuadro.c2{--acento:var(--verde);--acento-h:var(--verde-h)}
+.cuadro.c3{--acento:var(--violeta);--acento-h:var(--violeta-h)}
+.cuadro.c4{--acento:var(--amarillo);--acento-h:var(--amarillo-h)}
+
+.marco{
+  position:relative;min-width:0;
+  background:var(--papel-2);
+  border:1px solid var(--linea);border-radius:3px;
+  padding:12px 12px 2.6rem;
+  box-shadow:0 20px 44px -34px rgba(61,74,68,.75);
+}
+.marco::before{ /* la cinta de papel que la pega a la hoja */
+  content:"";position:absolute;top:-9px;left:50%;
+  width:86px;height:19px;transform:translateX(-50%) rotate(-1.5deg);
+  background:var(--acento,var(--celeste));opacity:.55;border-radius:1px;
+}
+.marco .nro{
+  position:absolute;bottom:.8rem;left:14px;
+  font-family:var(--dato);font-size:.625rem;letter-spacing:.2em;color:var(--acento-h,var(--celeste-h));
+}
+.marco .nota{
+  position:absolute;bottom:.8rem;right:14px;
+  font-family:var(--dato);font-size:.625rem;letter-spacing:.1em;color:#a9b2ad;
+}
+.hueco{
+  position:relative;width:100%;aspect-ratio:4/5;max-width:100%;
+  display:grid;place-items:center;overflow:hidden;cursor:zoom-in;
+  background:linear-gradient(150deg,#f4f1ea,#eceee9 55%,#f6f3ec);
+  border:0;padding:0;border-radius:2px;
+}
+.hueco img{width:100%;height:100%;object-fit:cover;display:block}
+.hueco .falta{
+  font-family:var(--dato);font-size:.6875rem;letter-spacing:.16em;
+  color:#9aa49e;text-align:center;padding:1rem;line-height:1.9;
+}
+.hueco .falta span{display:block;color:#b9c1bb;font-size:.625rem}
+.hueco:focus-visible{outline:2px solid var(--acento-h,var(--celeste-h));outline-offset:3px}
+.letra{display:flex;flex-direction:column;gap:.8rem;min-width:0}
+.letra .fecha{color:var(--acento-h,var(--celeste-h))}
+.letra h3{font-size:clamp(1.5rem,5vw,2.15rem)}
+.letra p.ded{color:#55615b}
+
+/* ---------- 3. Sobres ---------- */
+.grilla-sobres{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13.5rem),1fr));gap:.8rem;
+}
+.sobre{
+  position:relative;min-height:9.75rem;
+  display:flex;flex-direction:column;justify-content:center;gap:.5rem;
+  text-align:left;padding:1.2rem 1.3rem;
+  background:var(--papel-2);
+  border:1px solid var(--linea);border-left:3px solid var(--acento,var(--celeste));
+  border-radius:3px;color:inherit;font:inherit;cursor:pointer;
+  box-shadow:0 12px 28px -26px rgba(61,74,68,.7);
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.sobre:nth-child(4n+1){--acento:var(--celeste);--acento-h:var(--celeste-h)}
+.sobre:nth-child(4n+2){--acento:var(--verde);--acento-h:var(--verde-h)}
+.sobre:nth-child(4n+3){--acento:var(--violeta);--acento-h:var(--violeta-h)}
+.sobre:nth-child(4n+4){--acento:var(--amarillo);--acento-h:var(--amarillo-h)}
+.sobre:hover{transform:translateY(-2px);box-shadow:0 18px 34px -26px rgba(61,74,68,.8)}
+.sobre:focus-visible{outline:2px solid var(--acento-h);outline-offset:2px}
+.sobre .num{font-family:var(--dato);font-size:.625rem;letter-spacing:.2em;color:var(--acento-h)}
+.sobre .cerrado{font-family:var(--display);font-weight:600;font-size:1.3rem;line-height:1.2}
+.sobre .abierto{color:#55615b;font-size:.9375rem;line-height:1.6}
+.sobre[aria-expanded="true"]{background:linear-gradient(160deg,#ffffff,#fcfbf7)}
+.sobre .pulsa{font-family:var(--dato);font-size:.5625rem;letter-spacing:.16em;color:#a9b2ad;text-transform:uppercase}
+
+/* ---------- 4. Para ver (video) ---------- */
+.pantalla{
+  position:relative;background:var(--papel-2);
+  border:1px solid var(--linea);border-radius:3px;
+  padding:12px;max-width:46rem;margin-inline:auto;
+  box-shadow:0 22px 48px -36px rgba(61,74,68,.75);
+}
+.pantalla .caja{
+  position:relative;width:100%;aspect-ratio:16/9;max-width:100%;
+  display:grid;place-items:center;border-radius:2px;overflow:hidden;
+  background:linear-gradient(150deg,#eef6f8,#e9f1f3);
+}
+.pantalla video{width:100%;height:100%;object-fit:cover;display:block;background:#0e1513}
+.play{
+  display:grid;place-items:center;gap:.9rem;text-align:center;padding:1.5rem;
+  font-family:var(--dato);font-size:.6875rem;letter-spacing:.16em;color:var(--celeste-h);
+}
+.play .circulo{
+  width:62px;height:62px;border-radius:50%;display:grid;place-items:center;
+  background:var(--celeste);color:#ffffff;
+}
+.pie-cine{text-align:center;margin-top:1.1rem;color:var(--tinta-tenue);font-size:.9375rem;max-width:34rem;margin-inline:auto}
+
+/* ---------- 5. Las sueltas ---------- */
+.contactos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,10rem),1fr));gap:.6rem}
+.celda{
+  position:relative;aspect-ratio:1;padding:0;border-radius:3px;overflow:hidden;cursor:zoom-in;
+  background:linear-gradient(150deg,#f4f1ea,#edeeea);
+  border:1px solid var(--linea);
+}
+.celda img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease}
+.celda:hover img{transform:scale(1.04)}
+.celda .idx{
+  position:absolute;top:7px;left:9px;font-family:var(--dato);font-size:.5625rem;
+  letter-spacing:.14em;color:#8d968f;
+}
+.celda:focus-visible{outline:2px solid var(--violeta-h);outline-offset:2px}
+
+/* ---------- 6. Carta ---------- */
+.carta .wrap{display:flex;flex-direction:column;gap:1.4rem;max-width:40rem}
+.carta h2{font-size:clamp(1.95rem,6.5vw,2.9rem)}
+.carta p{color:#4f5b55}
+.carta .cierre{font-family:var(--display);font-style:italic;font-size:1.35rem;color:var(--violeta-h)}
+.cuerpo-carta{display:flex;flex-direction:column;gap:1.05rem}
+.boton{
+  align-self:flex-start;margin-top:.6rem;
+  font-family:var(--dato);font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:.95rem 1.7rem;border-radius:999px;cursor:pointer;
+  color:#3d4a44;background:var(--amarillo);border:1px solid #ebc766;
+  transition:transform .2s ease, box-shadow .2s ease;
+  box-shadow:0 12px 26px -20px rgba(169,127,20,.9);
+}
+.boton:hover{transform:translateY(-1px)}
+.boton:focus-visible{outline:2px solid var(--amarillo-h);outline-offset:3px}
+.deseo{font-family:var(--display);font-size:clamp(1.65rem,6vw,2.5rem);line-height:1.2;color:var(--verde-h)}
+
+/* ---------- Visor ---------- */
+#visor{
+  position:fixed;inset:0;z-index:40;
+  background:rgba(246,244,238,.96);
+  display:grid;grid-template-rows:auto 1fr auto;gap:.75rem;
+  padding:max(14px, env(safe-area-inset-top,0px)) max(14px, env(safe-area-inset-right,0px)) max(14px, env(safe-area-inset-bottom,0px)) max(14px, env(safe-area-inset-left,0px));
+}
+#visor .barra{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+#visor .lienzo{display:grid;place-items:center;min-height:0}
+#visor .lienzo img{max-width:100%;max-height:100%;object-fit:contain;border:6px solid #fff;box-shadow:0 20px 50px -30px rgba(61,74,68,.8)}
+#visor .lienzo .falta{
+  font-family:var(--dato);font-size:.75rem;letter-spacing:.16em;color:#9aa49e;text-align:center;
+  border:1px dashed #d6cfc0;border-radius:3px;padding:3rem 1.5rem;background:#fff;
+}
+#visor .pie{text-align:center;color:var(--tinta-tenue);font-size:.9375rem;min-height:1.5rem}
+.icono{
+  width:42px;height:42px;display:grid;place-items:center;border-radius:50%;
+  background:#fff;border:1px solid var(--linea);color:var(--tinta);cursor:pointer;
+}
+.icono:hover{background:#f4f1ea}
+.icono:focus-visible{outline:2px solid var(--celeste-h);outline-offset:2px}
+#visor .nav{display:flex;gap:.5rem;align-items:center}
+
+#confeti{position:fixed;inset:0;z-index:50;pointer-events:none}
+
+@keyframes subir{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes respirar{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+@media (max-width:40rem){
+  .cuadro{grid-template-columns:1fr}
+  .cuadro:nth-child(even) .marco{order:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
+}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden">
+  <defs>
+    <symbol id="jazmin" viewBox="0 0 24 24">
+      <g fill="currentColor">
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2"/>
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(72 12 12)"/>
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(144 12 12)"/>
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(216 12 12)"/>
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(288 12 12)"/>
+      </g>
+      <circle cx="12" cy="12" r="2.1" style="fill:var(--amarillo)"/>
+    </symbol>
+    <symbol id="flor" viewBox="0 0 24 24">
+      <g style="fill:var(--amarillo)">
+        <circle cx="12" cy="5.6" r="3.5"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(60 12 12)"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(120 12 12)"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(180 12 12)"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(240 12 12)"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(300 12 12)"/>
+      </g>
+      <circle cx="12" cy="12" r="2.8" style="fill:var(--amarillo-h)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main>
+  <section class="portada">
+    <div class="wrap">
+      <p class="sello dato"><i></i><span id="sello-txt">álbum nº 1</span><i></i></p>
+      <h1>Feliz cumpleaños<em id="nombre">Mi amor</em></h1>
+      <p class="ornamento" aria-hidden="true">
+        <i></i>
+        <svg class="fl j"><use href="#jazmin"></use></svg>
+        <svg class="fl a"><use href="#flor"></use></svg>
+        <svg class="fl v"><use href="#jazmin"></use></svg>
+        <i></i>
+      </p>
+      <div class="contador">
+        <b id="dias">0</b>
+        <p class="dato" id="dias-txt">días juntos</p>
+      </div>
+      <div class="pista">
+        <svg class="fl g" aria-hidden="true"><use href="#jazmin"></use></svg>
+        <p class="dato">bajá despacio</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="banda">
+    <div class="wrap">
+      <div class="titulo-seccion">
+        <p class="ornamento" aria-hidden="true">
+          <svg class="fl j"><use href="#jazmin"></use></svg>
+          <svg class="fl a"><use href="#flor"></use></svg>
+          <i></i>
+        </p>
+        <p class="dato">hoja por hoja</p>
+        <h2>El álbum de nosotros</h2>
+        <p class="sub">Cada foto con su fecha, su lugar y lo que tengo para decirte de ese día.</p>
+      </div>
+      <div class="album" id="album"></div>
+    </div>
+  </section>
+
+  <section class="banda verde">
+    <div class="wrap">
+      <div class="titulo-seccion">
+        <p class="ornamento" aria-hidden="true">
+          <svg class="fl g"><use href="#jazmin"></use></svg>
+          <svg class="fl a"><use href="#flor"></use></svg>
+          <i></i>
+        </p>
+        <p class="dato">abrí los que quieras</p>
+        <h2>Diez cosas que amo de vos</h2>
+        <p class="sub">Tocá cada sobre para abrirlo. No hace falta ningún orden.</p>
+      </div>
+      <div class="grilla-sobres" id="sobres"></div>
+    </div>
+  </section>
+
+  <section class="banda">
+    <div class="wrap">
+      <div class="titulo-seccion">
+        <p class="ornamento" aria-hidden="true">
+          <svg class="fl j"><use href="#jazmin"></use></svg>
+          <i></i>
+        </p>
+        <p class="dato">para ver</p>
+        <h2 id="video-titulo">Esto hay que verlo con sonido</h2>
+      </div>
+      <div class="pantalla">
+        <div class="caja" id="caja-video"></div>
+      </div>
+      <p class="pie-cine" id="video-pie"></p>
+    </div>
+  </section>
+
+  <section class="banda violeta">
+    <div class="wrap">
+      <div class="titulo-seccion">
+        <p class="ornamento" aria-hidden="true">
+          <svg class="fl v"><use href="#jazmin"></use></svg>
+          <svg class="fl a"><use href="#flor"></use></svg>
+          <i></i>
+        </p>
+        <p class="dato">las sueltas</p>
+        <h2>Todo lo que no entró en el álbum</h2>
+        <p class="sub">Tocá cualquiera para verla grande.</p>
+      </div>
+      <div class="contactos" id="contactos"></div>
+    </div>
+  </section>
+
+  <section class="banda amarilla carta">
+    <div class="wrap">
+      <p class="dato">lo último</p>
+      <h2 id="carta-titulo">Una carta, para terminar</h2>
+      <div class="cuerpo-carta" id="carta-cuerpo"></div>
+      <p class="ornamento" style="justify-content:flex-start" aria-hidden="true">
+        <svg class="fl j"><use href="#jazmin"></use></svg>
+        <svg class="fl a"><use href="#flor"></use></svg>
+        <svg class="fl v"><use href="#jazmin"></use></svg>
+        <i></i>
+      </p>
+      <p class="cierre" id="carta-firma"></p>
+      <button class="boton" id="btn-deseo" type="button">Apagar las velitas</button>
+      <p class="deseo" id="deseo" hidden></p>
+    </div>
+  </section>
+</main>
+
+<canvas id="confeti" aria-hidden="true"></canvas>
+
+<div id="visor" hidden role="dialog" aria-modal="true" aria-label="Foto en grande">
+  <div class="barra">
+    <p class="dato" id="visor-nro"></p>
+    <div class="nav">
+      <button class="icono" id="visor-prev" type="button" aria-label="Anterior">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <button class="icono" id="visor-next" type="button" aria-label="Siguiente">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+      <button class="icono" id="visor-cerrar" type="button" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="lienzo" id="visor-lienzo"></div>
+  <p class="pie" id="visor-pie"></p>
+</div>
+
+<script>
+/* ===================================================================
+   TODO EL CONTENIDO SE EDITA ACA ABAJO. No hace falta tocar nada mas.
+   Para las fotos y videos: poné el nombre del archivo en "src",
+   por ejemplo  src: "fotos/01.jpg".
+   Mientras src sea null, se ve un recuadro de ejemplo.
+   =================================================================== */
+var DATOS = {
+  nombre: "Mi amor",            /* el nombre de ella */
+  desde: "2021-03-14",          /* fecha en que empezaron: año-mes-dia */
+  selloPortada: "álbum nº 1",
+
+  capitulos: [
+    {
+      fecha: "14 mar 2021",
+      lugar: "Plaza Francia",
+      titulo: "La primera foto",
+      texto: "Esta es la primera que nos sacamos y todavía no sabíamos nada. Me acuerdo de la vuelta caminando, de que no quería que se terminara la tarde, y de pensar que me iba a acordar de ese día mucho tiempo. Tenía razón.",
+      nota: "10 × 15 · papel mate",
+      src: null,
+      pie: "La primera, cuando todavía no sabíamos nada."
+    },
+    {
+      fecha: "7 ene 2022",
+      lugar: "Ruta 40",
+      titulo: "El viaje",
+      texto: "Dos mil kilómetros, una playlist repetida hasta el cansancio y vos manejando con la ventanilla baja. Descubrí ahí que viajar con vos es más fácil que viajar solo, y eso no me había pasado nunca.",
+      nota: "10 × 15 · papel mate",
+      src: null,
+      pie: "Dos mil kilómetros y la misma playlist."
+    },
+    {
+      fecha: "2 sep 2022",
+      lugar: "Nuestra cocina",
+      titulo: "La casa",
+      texto: "El día que las cajas dejaron de ser cajas y esto empezó a ser nuestra casa. Vos ordenando los platos a tu manera, yo haciéndome el que entendía el sistema. Lo que más me gusta de acá es que está lleno de vos, y el jazmín de la entrada que ya tapa media pared.",
+      nota: "13 × 18 · papel brillante",
+      src: null,
+      pie: "El día que las cajas dejaron de ser cajas."
+    },
+    {
+      fecha: "31 dic 2023",
+      lugar: "La terraza",
+      titulo: "Esa noche",
+      texto: "Faltaban diez minutos para las doce y te reías de algo que ya no me acuerdo. De la risa me acuerdo igual. Si tuviera que elegir una sola foto de todas, probablemente sea esta.",
+      nota: "10 × 15 · papel mate",
+      src: null,
+      pie: "Faltaban diez minutos para las doce."
+    },
+    {
+      fecha: "hoy",
+      lugar: "Acá",
+      titulo: "Y hoy",
+      texto: "Hoy es tu cumpleaños y no se me ocurrió nada mejor que esto: juntar todo lo que fuimos en un solo lugar para que lo puedas mirar cuando quieras. Que tengas un año enorme. Yo me quedo acá.",
+      nota: "recién revelada",
+      src: null,
+      pie: "Hoy."
+    }
+  ],
+
+  sobres: [
+    { tapa: "Tu risa",             mensaje: "La escucho antes de verte y ya sé de qué humor estás. Es lo primero que extraño cuando no estás en casa." },
+    { tapa: "Cómo te enojás",      mensaje: "Hasta cuando tenés razón y estás enojada, me parece admirable lo claro que lo decís. Yo todavía estoy aprendiendo eso." },
+    { tapa: "Tu manera de cuidar", mensaje: "Te das cuenta de lo que necesito antes que yo. No sé cómo lo hacés, pero no lo dejes de hacer." },
+    { tapa: "Tu cabeza",           mensaje: "Me gusta cómo pensás. Me cambiaste de opinión más veces de las que te conté." },
+    { tapa: "Los lunes",           mensaje: "Hasta los lunes comunes me gustan si los paso con vos. Eso debería decirlo más seguido." },
+    { tapa: "Tu valentía",         mensaje: "Te vi hacer cosas que daban miedo y hacerlas igual. Me da orgullo mirarte de cerca." },
+    { tapa: "Cómo bailás",         mensaje: "Sola en la cocina, sin música buena, sin que nadie te mire. Esa es mi versión favorita tuya." },
+    { tapa: "Tu paciencia",        mensaje: "Conmigo, con los tiempos, con lo que no sale. Me enseñaste que apurarse casi nunca sirve." },
+    { tapa: "Tus silencios",       mensaje: "Poder estar callados juntos sin que sea incómodo me parece una de las mejores cosas que tenemos." },
+    { tapa: "Todo lo demás",       mensaje: "No me alcanzan diez. Quedate con que la lista sigue y que la voy a seguir escribiendo todo el año." }
+  ],
+
+  video: {
+    titulo: "Esto hay que verlo con sonido",
+    texto: "Subí el volumen. Dura poco pero es lo mejor que tengo.",
+    src: null,     /* el archivo de video, ej: "fotos/video.mp4" */
+    poster: null   /* opcional: una imagen de portada para el video */
+  },
+
+  galeria: [
+    { src: null, pie: "Domingo de mañana." },
+    { src: null, pie: "El cumpleaños del año pasado." },
+    { src: null, pie: "Cuando nos perdimos." },
+    { src: null, pie: "La foto que no te gusta." },
+    { src: null, pie: "Tu café de siempre." },
+    { src: null, pie: "La siesta." },
+    { src: null, pie: "El casamiento de tu hermana." },
+    { src: null, pie: "Esa pizza." },
+    { src: null, pie: "Una más, porque sí." }
+  ],
+
+  carta: {
+    titulo: "Una carta, para terminar",
+    parrafos: [
+      "No soy bueno diciendo estas cosas en voz alta, así que las escribí. Hoy es tu cumpleaños y lo único que quería era que tuvieras algo que se pueda mirar más de una vez.",
+      "Pasaron un montón de cosas desde la primera foto de este álbum. Algunas difíciles. Y cada vez que me acuerdo de cómo salimos, me acuerdo de que salimos juntos.",
+      "Gracias por la paciencia, por las veces que insististe cuando yo no tenía ganas, y por hacer que la casa sea un lugar al que da ganas de volver.",
+      "Que este año te traiga todo lo que estás buscando. Y si en algún momento te hace falta acordarte de lo que fuimos construyendo, volvé acá."
+    ],
+    firma: "Te amo. Feliz cumpleaños.",
+    deseo: "Pedí tres deseos. Los otros dos te los debo."
+  }
+};
+
+/* =================== de acá para abajo, el armado =================== */
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var MEDIOS = [];
+  var reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var dosCifras = function (n) { return String(n).length < 2 ? "0" + n : String(n); };
+
+  /* Portada */
+  $("#nombre").textContent = DATOS.nombre;
+  $("#sello-txt").textContent = DATOS.selloPortada;
+
+  var desde = new Date(DATOS.desde + "T00:00:00");
+  var dias = Math.max(0, Math.floor((new Date() - desde) / 86400000));
+  if (!isFinite(dias)) dias = 0;
+  var elDias = $("#dias");
+  $("#dias-txt").textContent = dias === 1 ? "día juntos" : "días juntos";
+  if (reducir) {
+    elDias.textContent = dias.toLocaleString("es-AR");
+  } else {
+    var t0 = performance.now(), dur = 1300;
+    var tick = function (t) {
+      var p = Math.min(1, (t - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      elDias.textContent = Math.round(dias * e).toLocaleString("es-AR");
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  /* Hueco de foto reutilizable */
+  function hueco(medio, etiqueta) {
+    var i = MEDIOS.push(medio) - 1;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "hueco";
+    b.dataset.i = i;
+    b.setAttribute("aria-label", "Ver " + (medio.pie || etiqueta) + " en grande");
+    if (medio.src) {
+      var img = document.createElement("img");
+      img.src = medio.src;
+      img.alt = medio.pie || etiqueta;
+      img.loading = "lazy";
+      b.appendChild(img);
+    } else {
+      var p = document.createElement("p");
+      p.className = "falta";
+      p.textContent = etiqueta;
+      var s = document.createElement("span");
+      s.textContent = "poné la foto acá";
+      p.appendChild(s);
+      b.appendChild(p);
+    }
+    return b;
+  }
+
+  /* Capitulos */
+  var album = $("#album");
+  DATOS.capitulos.forEach(function (c, i) {
+    var art = document.createElement("article");
+    art.className = "cuadro c" + ((i % 4) + 1);
+
+    var marco = document.createElement("div");
+    marco.className = "marco";
+    marco.appendChild(hueco({ src: c.src, pie: c.pie || c.titulo }, "FOTO " + dosCifras(i + 1)));
+
+    var nro = document.createElement("span");
+    nro.className = "nro";
+    nro.textContent = dosCifras(i + 1);
+    var nota = document.createElement("span");
+    nota.className = "nota";
+    nota.textContent = c.nota || "";
+    marco.appendChild(nro);
+    marco.appendChild(nota);
+
+    var letra = document.createElement("div");
+    letra.className = "letra";
+    var meta = document.createElement("p");
+    meta.className = "dato fecha";
+    meta.textContent = c.fecha + " · " + c.lugar;
+    var h3 = document.createElement("h3");
+    h3.textContent = c.titulo;
+    var ded = document.createElement("p");
+    ded.className = "ded";
+    ded.textContent = c.texto;
+    letra.appendChild(meta);
+    letra.appendChild(h3);
+    letra.appendChild(ded);
+
+    art.appendChild(marco);
+    art.appendChild(letra);
+    album.appendChild(art);
+  });
+
+  /* Sobres */
+  var sobres = $("#sobres");
+  DATOS.sobres.forEach(function (s, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "sobre";
+    b.setAttribute("aria-expanded", "false");
+
+    var num = document.createElement("span");
+    num.className = "num";
+    num.textContent = dosCifras(i + 1);
+    var tapa = document.createElement("span");
+    tapa.className = "cerrado";
+    tapa.textContent = s.tapa;
+    var msg = document.createElement("span");
+    msg.className = "abierto";
+    msg.textContent = s.mensaje;
+    msg.hidden = true;
+    var pulsa = document.createElement("span");
+    pulsa.className = "pulsa";
+    pulsa.textContent = "tocá para abrir";
+
+    b.appendChild(num);
+    b.appendChild(tapa);
+    b.appendChild(msg);
+    b.appendChild(pulsa);
+
+    b.addEventListener("click", function () {
+      var abierto = b.getAttribute("aria-expanded") === "true";
+      b.setAttribute("aria-expanded", String(!abierto));
+      msg.hidden = abierto;
+      pulsa.textContent = abierto ? "tocá para abrir" : "cerrar";
+    });
+    sobres.appendChild(b);
+  });
+
+  /* Video */
+  $("#video-titulo").textContent = DATOS.video.titulo;
+  $("#video-pie").textContent = DATOS.video.texto;
+  var caja = $("#caja-video");
+  if (DATOS.video.src) {
+    var v = document.createElement("video");
+    v.src = DATOS.video.src;
+    v.controls = true;
+    v.playsInline = true;
+    v.preload = "metadata";
+    if (DATOS.video.poster) v.poster = DATOS.video.poster;
+    caja.appendChild(v);
+  } else {
+    caja.innerHTML =
+      '<div class="play"><span class="circulo">' +
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
+      '</span>VIDEO<span style="color:#9aa49e;font-size:.625rem;display:block">poné el archivo acá</span></div>';
+  }
+
+  /* Las sueltas */
+  var contactos = $("#contactos");
+  DATOS.galeria.forEach(function (g, i) {
+    var i0 = MEDIOS.push({ src: g.src, pie: g.pie }) - 1;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "celda";
+    b.dataset.i = i0;
+    b.setAttribute("aria-label", "Ver " + (g.pie || "foto " + (i + 1)) + " en grande");
+    if (g.src) {
+      var img = document.createElement("img");
+      img.src = g.src;
+      img.alt = g.pie || "";
+      img.loading = "lazy";
+      b.appendChild(img);
+    }
+    var idx = document.createElement("span");
+    idx.className = "idx";
+    idx.textContent = dosCifras(i + 1);
+    b.appendChild(idx);
+    contactos.appendChild(b);
+  });
+
+  /* Carta */
+  $("#carta-titulo").textContent = DATOS.carta.titulo;
+  var cuerpo = $("#carta-cuerpo");
+  DATOS.carta.parrafos.forEach(function (t) {
+    var p = document.createElement("p");
+    p.textContent = t;
+    cuerpo.appendChild(p);
+  });
+  $("#carta-firma").textContent = DATOS.carta.firma;
+
+  /* Visor */
+  var visor = $("#visor"), lienzo = $("#visor-lienzo");
+  var actual = 0, ultimoFoco = null;
+
+  function pintar() {
+    var m = MEDIOS[actual] || {};
+    lienzo.innerHTML = "";
+    if (m.src) {
+      var img = document.createElement("img");
+      img.src = m.src;
+      img.alt = m.pie || "";
+      lienzo.appendChild(img);
+    } else {
+      var p = document.createElement("p");
+      p.className = "falta";
+      p.textContent = "acá va la foto";
+      lienzo.appendChild(p);
+    }
+    $("#visor-pie").textContent = m.pie || "";
+    $("#visor-nro").textContent = dosCifras(actual + 1) + " / " + dosCifras(MEDIOS.length);
+  }
+  function abrir(i) {
+    actual = i;
+    ultimoFoco = document.activeElement;
+    visor.hidden = false;
+    pintar();
+    $("#visor-cerrar").focus();
+  }
+  function cerrar() {
+    visor.hidden = true;
+    if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
+  }
+  function mover(d) {
+    actual = (actual + d + MEDIOS.length) % MEDIOS.length;
+    pintar();
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest(".hueco, .celda") : null;
+    if (t) abrir(Number(t.dataset.i));
+  });
+  $("#visor-cerrar").addEventListener("click", cerrar);
+  $("#visor-prev").addEventListener("click", function () { mover(-1); });
+  $("#visor-next").addEventListener("click", function () { mover(1); });
+  visor.addEventListener("click", function (e) {
+    if (e.target === visor || e.target === lienzo) cerrar();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (visor.hidden) return;
+    if (e.key === "Escape") cerrar();
+    if (e.key === "ArrowRight") mover(1);
+    if (e.key === "ArrowLeft") mover(-1);
+  });
+
+  /* Velitas: petalos de jazmin y flores en pastel */
+  var cv = $("#confeti"), ctx = cv.getContext("2d");
+  var trozos = [], corriendo = false;
+  function medir() {
+    var r = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = innerWidth * r;
+    cv.height = innerHeight * r;
+    ctx.setTransform(r, 0, 0, r, 0, 0);
+  }
+  addEventListener("resize", medir);
+  medir();
+
+  var colores = ["#aadcea", "#f8d976", "#b9dcc0", "#cbb8e6", "#ffffff"];
+  function soltar() {
+    for (var i = 0; i < 140; i++) {
+      trozos.push({
+        x: innerWidth * Math.random(),
+        y: -20 - Math.random() * innerHeight * 0.5,
+        vx: (Math.random() - 0.5) * 1.6,
+        vy: 1.6 + Math.random() * 2.8,
+        g: Math.random() * Math.PI,
+        vg: (Math.random() - 0.5) * 0.18,
+        w: 6 + Math.random() * 6,
+        h: 9 + Math.random() * 8,
+        c: colores[Math.floor(Math.random() * colores.length)]
+      });
+    }
+    if (!corriendo) { corriendo = true; requestAnimationFrame(cuadro); }
+  }
+  function cuadro() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    trozos = trozos.filter(function (p) { return p.y < innerHeight + 40; });
+    trozos.forEach(function (p) {
+      p.x += p.vx; p.y += p.vy; p.g += p.vg;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.g);
+      ctx.fillStyle = p.c;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, p.w / 2, (p.h / 2) * Math.abs(Math.cos(p.g)), 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    });
+    if (trozos.length) { requestAnimationFrame(cuadro); }
+    else { corriendo = false; ctx.clearRect(0, 0, innerWidth, innerHeight); }
+  }
+
+  $("#btn-deseo").addEventListener("click", function (e) {
+    var d = $("#deseo");
+    d.textContent = DATOS.carta.deseo;
+    d.hidden = false;
+    e.currentTarget.textContent = "Otra vez";
+    if (!reducir) soltar();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<title>Veinticuatro Puertas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+/* Layout: diciembre en pastel. Petalos de jazmin cayendo de fondo, arriba el nombre
+   y el contador, abajo una reja de 24 puertas que rotan entre celeste, verde,
+   violeta y amarillo. Cada puerta abre una ficha con su mensaje.
+   Un solo tema: claro. */
+:root{
+  color-scheme: light;
+  --fondo:#f7faf6;
+  --carta:#ffffff;
+  --tinta:#39453f;
+  --tinta-tenue:#7f8d84;
+  --linea:#e3e9df;
+
+  --celeste:#aadcea;
+  --celeste-h:#3f8aa7;
+  --amarillo:#f8d976;
+  --amarillo-h:#a97f14;
+  --verde:#b9dcc0;
+  --verde-h:#49825c;
+  --violeta:#cbb8e6;
+  --violeta-h:#6a4f9c;
+  --jazmin:#ffffff;
+
+  --display:"Gilda Display", "Didot", Georgia, serif;
+  --cuerpo:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --dato:"DM Mono", ui-monospace, "Courier New", monospace;
+
+  --max:58rem;
+}
+*{box-sizing:border-box}
+body{
+  background:
+    radial-gradient(120% 70% at 50% -8%, #e7f4f8 0%, rgba(231,244,248,0) 58%),
+    radial-gradient(95% 55% at 50% 104%, #f3eefb 0%, rgba(243,238,251,0) 62%),
+    var(--fondo);
+  color:var(--tinta);
+  font-family:var(--cuerpo);
+  font-size:1.0625rem;
+  line-height:1.62;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.14;text-wrap:balance}
+p{margin:0}
+.wrap{
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+main{position:relative;z-index:1}
+#petalos{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+.dato{
+  font-family:var(--dato);font-size:.6875rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--tinta-tenue);
+}
+
+/* ---------- Jazmines ---------- */
+.ornamento{display:flex;align-items:center;justify-content:center;gap:.5rem}
+.ornamento i{display:block;height:1px;width:clamp(16px,7vw,46px);background:linear-gradient(90deg,transparent,var(--linea))}
+.ornamento i:last-child{background:linear-gradient(90deg,var(--linea),transparent)}
+.fl{display:block;width:20px;height:20px;flex:0 0 auto}
+.fl.j{color:var(--celeste)}
+.fl.v{color:var(--violeta)}
+.fl.g{color:var(--verde)}
+.fl.a{width:16px;height:16px}
+.flor-puerta{position:absolute;top:7px;left:8px;width:14px;height:14px}
+
+/* ---------- Encabezado ---------- */
+.tapa{padding-block:clamp(3rem,9vh,5rem) clamp(2rem,5vh,3rem)}
+.tapa .wrap{display:flex;flex-direction:column;gap:1.1rem;align-items:center;text-align:center}
+.estrella{display:flex;align-items:center;gap:.65rem;animation:subir .9s ease-out both}
+.estrella i{display:block;width:30px;height:1px;background:var(--celeste-h);opacity:.5}
+.tapa h1{
+  font-size:clamp(2.3rem,9.5vw,4.25rem);
+  animation:subir 1s .1s ease-out both;
+}
+.tapa h1 span{display:block;color:var(--violeta-h);font-size:.42em;margin-top:.45em}
+.tapa .intro{color:#55615b;max-width:34rem;animation:subir 1s .2s ease-out both}
+.marcador{
+  display:inline-flex;align-items:center;gap:.65rem;
+  padding:.7rem 1.2rem;border:1px solid var(--linea);border-radius:999px;
+  background:var(--carta);
+  box-shadow:0 12px 28px -24px rgba(57,69,63,.7);
+  animation:subir 1s .3s ease-out both;
+}
+.marcador b{font-family:var(--dato);font-weight:500;font-size:.75rem;letter-spacing:.1em;color:var(--celeste-h);font-variant-numeric:tabular-nums}
+.marcador span{font-family:var(--dato);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-tenue)}
+.marcador i{display:block;width:1px;height:14px;background:var(--linea)}
+
+/* ---------- La reja de puertas ---------- */
+.reja{padding-block:clamp(1.5rem,4vw,2.5rem) clamp(3.5rem,10vw,6rem)}
+.puertas{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,5.25rem),1fr));
+  gap:.6rem;
+}
+.puerta{
+  position:relative;aspect-ratio:1;min-width:0;
+  display:grid;place-items:center;gap:.2rem;
+  padding:.5rem;border-radius:4px;cursor:pointer;font:inherit;color:inherit;
+  border:1px solid var(--linea);
+  background:var(--carta);
+  box-shadow:0 10px 24px -22px rgba(57,69,63,.75);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.puerta:nth-child(4n+1){--acento:var(--celeste);--acento-h:var(--celeste-h)}
+.puerta:nth-child(4n+2){--acento:var(--verde);--acento-h:var(--verde-h)}
+.puerta:nth-child(4n+3){--acento:var(--violeta);--acento-h:var(--violeta-h)}
+.puerta:nth-child(4n+4){--acento:var(--amarillo);--acento-h:var(--amarillo-h)}
+.puerta::before{
+  content:"";position:absolute;inset:0;border-radius:3px;
+  background:var(--acento);opacity:.16;
+}
+.puerta .n{
+  position:relative;
+  font-family:var(--display);font-size:clamp(1.5rem,6vw,2rem);line-height:1;
+  color:var(--acento-h);font-variant-numeric:tabular-nums;
+}
+.puerta .marca{
+  position:relative;
+  font-family:var(--dato);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tinta-tenue);
+}
+.puerta:hover{transform:translateY(-2px);box-shadow:0 16px 30px -22px rgba(57,69,63,.85)}
+.puerta:focus-visible{outline:2px solid var(--acento-h);outline-offset:3px}
+
+.puerta[disabled]{
+  cursor:not-allowed;border-style:dashed;border-color:#dde3d9;
+  background:#fbfcfa;transform:none;box-shadow:none;
+}
+.puerta[disabled]::before{opacity:.05}
+.puerta[disabled] .n{color:#aab4ac}
+.puerta[disabled] .marca{color:#bcc5bd}
+
+.puerta.hoy{border-color:var(--amarillo-h)}
+.puerta.hoy::before{background:var(--amarillo);opacity:.4}
+.puerta.hoy .n{color:#8a6708}
+.puerta.hoy .marca{color:#8a6708}
+
+.puerta.vista::after{
+  content:"";position:absolute;top:8px;right:8px;width:5px;height:5px;border-radius:50%;
+  background:var(--verde-h);opacity:.6;
+}
+.puerta.final{border-color:var(--violeta-h)}
+.puerta.final::before{background:var(--violeta);opacity:.38}
+.puerta.final .n{color:var(--violeta-h)}
+.puerta.final[disabled]{border-style:solid;border-color:#ddd2ee}
+.puerta.final[disabled]::before{opacity:.14}
+.puerta.final[disabled] .n{color:#a394bd}
+
+.nota{margin-top:1.75rem;display:flex;flex-direction:column;gap:.35rem}
+
+/* ---------- Ficha ---------- */
+#ficha{
+  position:fixed;inset:0;z-index:40;
+  background:rgba(240,245,239,.95);
+  display:grid;place-items:center;
+  padding:max(16px, env(safe-area-inset-top,0px)) max(16px, env(safe-area-inset-right,0px)) max(16px, env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px));
+}
+#ficha .hoja{
+  width:min(32rem,100%);max-height:100%;overflow-y:auto;
+  display:flex;flex-direction:column;gap:1.1rem;
+  padding:clamp(1.5rem,5vw,2.5rem);
+  border:1px solid var(--linea);border-radius:5px;
+  background:var(--carta);
+  box-shadow:0 40px 80px -45px rgba(57,69,63,.65);
+}
+#ficha .cabeza{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+#ficha .dia{font-family:var(--display);font-size:clamp(2.75rem,12vw,4rem);line-height:.9;color:var(--celeste-h)}
+#ficha .texto{color:#4f5b55;line-height:1.72}
+#ficha .foto{width:100%;border-radius:3px;border:1px solid var(--linea);display:block}
+#ficha .vale{
+  border:1px dashed var(--amarillo-h);border-radius:4px;padding:1.15rem 1.3rem;
+  display:flex;flex-direction:column;gap:.5rem;background:#fdf8e9;
+}
+#ficha .vale .eti{font-family:var(--dato);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amarillo-h)}
+#ficha .vale p{font-family:var(--display);font-size:1.4rem;line-height:1.3;color:#6f5307}
+.cerrar{
+  width:40px;height:40px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;
+  background:#f4f7f2;border:1px solid var(--linea);color:var(--tinta);cursor:pointer;
+}
+.cerrar:hover{background:#eaf0e8}
+.cerrar:focus-visible{outline:2px solid var(--celeste-h);outline-offset:2px}
+
+@keyframes subir{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+@media (max-width:26rem){
+  .puertas{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001s !important;transition-duration:.001s !important}
+}
+</style>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden">
+  <defs>
+    <symbol id="jazmin" viewBox="0 0 24 24">
+      <g fill="currentColor">
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2"/>
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(72 12 12)"/>
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(144 12 12)"/>
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(216 12 12)"/>
+        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(288 12 12)"/>
+      </g>
+      <circle cx="12" cy="12" r="2.1" style="fill:var(--amarillo)"/>
+    </symbol>
+    <symbol id="flor" viewBox="0 0 24 24">
+      <g style="fill:var(--amarillo)">
+        <circle cx="12" cy="5.6" r="3.5"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(60 12 12)"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(120 12 12)"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(180 12 12)"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(240 12 12)"/>
+        <circle cx="12" cy="5.6" r="3.5" transform="rotate(300 12 12)"/>
+      </g>
+      <circle cx="12" cy="12" r="2.8" style="fill:var(--amarillo-h)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<canvas id="petalos" aria-hidden="true"></canvas>
+
+<main>
+  <section class="tapa">
+    <div class="wrap">
+      <p class="estrella dato"><i></i><span id="mes">diciembre 2026</span><i></i></p>
+      <h1>Veinticuatro puertas<span id="nombre">Mi amor</span></h1>
+      <p class="ornamento" aria-hidden="true">
+        <i></i>
+        <svg class="fl j"><use href="#jazmin"></use></svg>
+        <svg class="fl a"><use href="#flor"></use></svg>
+        <svg class="fl v"><use href="#jazmin"></use></svg>
+        <i></i>
+      </p>
+      <p class="intro" id="intro"></p>
+      <p class="marcador"><b id="cuenta">0 / 24</b><i></i><span id="proxima">—</span></p>
+    </div>
+  </section>
+
+  <section class="reja">
+    <div class="wrap">
+      <div class="puertas" id="puertas"></div>
+      <div class="nota">
+        <p class="ornamento" style="justify-content:flex-start" aria-hidden="true">
+          <svg class="fl g"><use href="#jazmin"></use></svg>
+          <svg class="fl a"><use href="#flor"></use></svg>
+          <i></i>
+        </p>
+        <p class="dato">cómo funciona</p>
+        <p class="dato" id="como">Cada puerta se abre el día que le toca. Las que ya abriste quedan abiertas.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="ficha" hidden role="dialog" aria-modal="true" aria-labelledby="ficha-dia">
+  <div class="hoja">
+    <div class="cabeza">
+      <div>
+        <p class="dato" id="ficha-fecha"></p>
+        <p class="dia" id="ficha-dia"></p>
+      </div>
+      <button class="cerrar" id="ficha-cerrar" type="button" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div id="ficha-cuerpo"></div>
+  </div>
+</div>
+
+<script>
+/* ===================================================================
+   CALENDARIO DE ADVIENTO - 24 puertas, una por dia hasta Nochebuena.
+   Todo el contenido se edita aca abajo.
+   tipo "mensaje" -> texto comun.  tipo "vale" -> un vale canjeable.
+   foto: null  o  "fotos/algo.jpg" si querés sumarle imagen a esa puerta.
+   =================================================================== */
+var NAVIDAD = {
+  nombre: "Mi amor",
+  anio: 2026,            /* el año del diciembre que corresponde */
+  vistaPrevia: true,     /* true abre las 24 para que puedas revisarlas vos.
+                            PONELO EN false ANTES DE COMPARTIRLO. */
+
+  intro: "Un mensaje por día hasta Nochebuena. No se puede hacer trampa: cada puerta se abre sola el día que le toca. Lo que cae de fondo no es nieve, son pétalos de jazmín, que es lo que florece acá en diciembre.",
+
+  puertas: [
+    { tipo: "mensaje", texto: "Arranca diciembre. Veinticuatro días de esto, uno por vez, para que el mes se sienta un poco menos apurado. Feliz primero.", foto: null },
+    { tipo: "mensaje", texto: "Lo primero que quiero decirte es gracias. Por el año, por la paciencia y por bancarte mis manías sin hacerlas un tema.", foto: null },
+    { tipo: "vale",    texto: "Un desayuno en la cama, el día que vos digas. Sin aviso previo, sin excusas.", foto: null },
+    { tipo: "mensaje", texto: "Me acordé de la primera vez que cocinamos juntos y salió mal. Nos reímos tanto que terminamos pidiendo algo. Esa noche me di cuenta de que contigo hasta lo que sale mal está bien.", foto: null },
+    { tipo: "mensaje", texto: "Tu manera de contar las cosas. Empezás por el final, volvés al principio, te perdés en el medio, y yo igual te escucharía todo el día.", foto: null },
+    { tipo: "vale",    texto: "Elegís la película y yo no me quejo ni una sola vez. Ni al principio, ni en el medio.", foto: null },
+    { tipo: "mensaje", texto: "Hoy nada más que esto: pensé en vos a las tres de la tarde, sin motivo. Me pasa bastante seguido.", foto: null },
+    { tipo: "mensaje", texto: "Si alguien me preguntara qué aprendí este año, diría que aprendí a pedir ayuda. Me lo enseñaste vos, insistiendo.", foto: null },
+    { tipo: "vale",    texto: "Masajes en la espalda sin que me lo tengas que pedir. Válido tres veces.", foto: null },
+    { tipo: "mensaje", texto: "Diez de veinticuatro. Vas bien. Si llegaste hasta acá es porque estás volviendo todos los días, y eso me pone contento.", foto: null },
+    { tipo: "mensaje", texto: "Tu risa cuando algo te agarra desprevenida. No la que usás por educación: la otra, la fea, la buena.", foto: null },
+    { tipo: "vale",    texto: "Una cena afuera, donde vos quieras. Incluso en ese lugar que a mí no me gusta.", foto: null },
+    { tipo: "mensaje", texto: "Los domingos con vos son mi parte favorita de la semana. Sin planes, sin reloj, con la casa hecha un desastre.", foto: null },
+    { tipo: "mensaje", texto: "Me gusta que no te conformes. Que preguntes por qué. Que digas lo que piensas aunque incomode. Es raro encontrar eso.", foto: null },
+    { tipo: "vale",    texto: "Un día entero sin celular, los dos. Vos elegís el día; yo apago el mío primero.", foto: null },
+    { tipo: "mensaje", texto: "Hay días en que no soy fácil. Gracias por quedarte igual en esos. Lo noto siempre, aunque no lo diga en el momento.", foto: null },
+    { tipo: "mensaje", texto: "Quedan ocho. Ya se siente a Navidad: el calor, la gente apurada, las luces de los vecinos. Me gusta pasar esto con vos.", foto: null },
+    { tipo: "vale",    texto: "Yo lavo los platos toda una semana. Los siete días, sin recordatorios.", foto: null },
+    { tipo: "mensaje", texto: "Pensé en todo lo que queremos hacer el año que viene y me entusiasmó más de lo que esperaba. Hagamos la lista juntos estos días.", foto: null },
+    { tipo: "mensaje", texto: "Lo que más me gusta de nuestra casa no es la casa. Es que cuando llego, estás.", foto: null },
+    { tipo: "vale",    texto: "Una siesta larga, sin despertador y sin culpa. Yo me encargo de que nadie moleste.", foto: null },
+    { tipo: "mensaje", texto: "Faltan tres. Te quiero decir algo simple: elegirte fue la mejor decisión que tomé, y la vuelvo a tomar todos los días sin pensarlo mucho.", foto: null },
+    { tipo: "mensaje", texto: "Mañana es Nochebuena. Hoy solamente quiero que sepas que estoy muy tranquilo de pasarla con vos, y que no cambiaría el plan por nada.", foto: null },
+    { tipo: "mensaje", texto: "Llegamos. Veinticuatro días escribiéndote de a poco para terminar diciéndote lo mismo que el primero: que te amo, que gracias por el año, y que el que viene lo quiero igual de cerca. Feliz Navidad.", foto: null }
+  ]
+};
+
+/* =================== de acá para abajo, el armado =================== */
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var LLAVE = "adviento-vistas-" + NAVIDAD.anio;
+
+  var hoy = new Date();
+  hoy.setHours(0, 0, 0, 0);
+
+  $("#nombre").textContent = NAVIDAD.nombre;
+  $("#mes").textContent = "diciembre " + NAVIDAD.anio;
+  $("#intro").textContent = NAVIDAD.intro;
+
+  /* las que ya miro, guardadas en su propio telefono */
+  var vistas = [];
+  try {
+    vistas = JSON.parse(localStorage.getItem(LLAVE) || "[]");
+    if (!Array.isArray(vistas)) vistas = [];
+  } catch (e) { vistas = []; }
+  function guardar() {
+    try { localStorage.setItem(LLAVE, JSON.stringify(vistas)); } catch (e) {}
+  }
+
+  function diaDe(n) { return new Date(NAVIDAD.anio, 11, n); }
+  function abierta(n) { return NAVIDAD.vistaPrevia || diaDe(n).getTime() <= hoy.getTime(); }
+
+  var reja = $("#puertas");
+  var abiertas = 0, proximaN = null;
+
+  NAVIDAD.puertas.forEach(function (p, i) {
+    var n = i + 1;
+    var libre = abierta(n);
+    var esHoy = diaDe(n).getTime() === hoy.getTime();
+    if (libre) abiertas++;
+    if (!libre && !proximaN) proximaN = n;
+
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "puerta" +
+      (esHoy && libre ? " hoy" : "") +
+      (n === 24 ? " final" : "") +
+      (libre && vistas.indexOf(n) !== -1 ? " vista" : "");
+
+    var num = document.createElement("span");
+    num.className = "n";
+    num.textContent = n;
+    b.appendChild(num);
+
+    var marca = document.createElement("span");
+    marca.className = "marca";
+    if (!libre) marca.textContent = "cerrada";
+    else if (esHoy) marca.textContent = "hoy";
+    else if (n === 24) marca.textContent = "nochebuena";
+    else marca.textContent = p.tipo === "vale" ? "vale" : "abrir";
+    b.appendChild(marca);
+
+    if (libre && (esHoy || n === 24)) {
+      b.insertAdjacentHTML("afterbegin",
+        '<svg class="fl ' + (esHoy ? "j" : "a") + ' flor-puerta" aria-hidden="true"><use href="#' +
+        (esHoy ? "jazmin" : "flor") + '"></use></svg>');
+    }
+
+    if (!libre) {
+      b.disabled = true;
+      b.setAttribute("aria-label", "Puerta " + n + ": se abre el " + n + " de diciembre");
+    } else {
+      b.setAttribute("aria-label", "Abrir la puerta " + n);
+      b.addEventListener("click", function () { abrir(n, p, b); });
+    }
+    reja.appendChild(b);
+  });
+
+  /* marcador de arriba */
+  $("#cuenta").textContent = abiertas + " / " + NAVIDAD.puertas.length;
+  var prox = $("#proxima");
+  if (NAVIDAD.vistaPrevia) {
+    prox.textContent = "vista previa: todas abiertas";
+    $("#como").textContent = "Estás en vista previa. Poné vistaPrevia en false antes de compartirlo.";
+  } else if (proximaN) {
+    var faltan = Math.round((diaDe(proximaN).getTime() - hoy.getTime()) / 86400000);
+    prox.textContent = faltan <= 0 ? "hoy se abre la " + proximaN
+      : faltan === 1 ? "la " + proximaN + " se abre mañana"
+      : "la " + proximaN + " en " + faltan + " días";
+  } else {
+    prox.textContent = "están las 24 abiertas";
+  }
+
+  /* ficha */
+  var ficha = $("#ficha"), cuerpo = $("#ficha-cuerpo");
+  var foco = null;
+
+  function abrir(n, p, boton) {
+    foco = document.activeElement;
+    $("#ficha-fecha").textContent = n + " de diciembre de " + NAVIDAD.anio;
+    $("#ficha-dia").textContent = n;
+    cuerpo.innerHTML = "";
+
+    if (p.tipo === "vale") {
+      var caja = document.createElement("div");
+      caja.className = "vale";
+      var eti = document.createElement("p");
+      eti.className = "eti";
+      eti.textContent = "vale por";
+      var t = document.createElement("p");
+      t.textContent = p.texto;
+      caja.appendChild(eti);
+      caja.appendChild(t);
+      cuerpo.appendChild(caja);
+    } else {
+      var txt = document.createElement("p");
+      txt.className = "texto";
+      txt.textContent = p.texto;
+      cuerpo.appendChild(txt);
+    }
+
+    if (p.foto) {
+      var img = document.createElement("img");
+      img.className = "foto";
+      img.src = p.foto;
+      img.alt = "";
+      img.loading = "lazy";
+      cuerpo.appendChild(img);
+    }
+
+    ficha.hidden = false;
+    $("#ficha-cerrar").focus();
+
+    if (vistas.indexOf(n) === -1) {
+      vistas.push(n);
+      guardar();
+    }
+    boton.classList.add("vista");
+  }
+  function cerrar() {
+    ficha.hidden = true;
+    if (foco && foco.focus) foco.focus();
+  }
+  $("#ficha-cerrar").addEventListener("click", cerrar);
+  ficha.addEventListener("click", function (e) { if (e.target === ficha) cerrar(); });
+  document.addEventListener("keydown", function (e) {
+    if (!ficha.hidden && e.key === "Escape") cerrar();
+  });
+
+  /* petalos de jazmin cayendo (en diciembre, aca, es lo que florece) */
+  var cv = $("#petalos"), ctx = cv.getContext("2d");
+  var lluvia = [];
+  var tintas = ["#aadcea", "#cbb8e6", "#f8d976", "#b9dcc0", "#ffffff"];
+  function medir() {
+    var r = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = innerWidth * r;
+    cv.height = innerHeight * r;
+    ctx.setTransform(r, 0, 0, r, 0, 0);
+  }
+  function sembrar() {
+    var cuantos = innerWidth < 600 ? 30 : 54;
+    lluvia = [];
+    for (var i = 0; i < cuantos; i++) {
+      lluvia.push({
+        x: Math.random() * innerWidth,
+        y: Math.random() * innerHeight,
+        r: 2.4 + Math.random() * 3.8,
+        vy: 0.2 + Math.random() * 0.5,
+        vx: (Math.random() - 0.5) * 0.35,
+        g: Math.random() * Math.PI,
+        vg: (Math.random() - 0.5) * 0.022,
+        a: 0.3 + Math.random() * 0.45,
+        c: tintas[Math.floor(Math.random() * tintas.length)]
+      });
+    }
+  }
+  function dibujar(c) {
+    ctx.save();
+    ctx.translate(c.x, c.y);
+    ctx.rotate(c.g);
+    ctx.globalAlpha = c.a;
+    ctx.fillStyle = c.c;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, c.r, c.r * 0.52, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+  function pintar() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (var i = 0; i < lluvia.length; i++) dibujar(lluvia[i]);
+  }
+  function caer() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (var i = 0; i < lluvia.length; i++) {
+      var c = lluvia[i];
+      c.y += c.vy;
+      c.x += c.vx + Math.sin(c.y / 90) * 0.22;
+      c.g += c.vg;
+      if (c.y > innerHeight + 8) { c.y = -8; c.x = Math.random() * innerWidth; }
+      if (c.x < -10) c.x = innerWidth + 10;
+      if (c.x > innerWidth + 10) c.x = -10;
+      dibujar(c);
+    }
+    requestAnimationFrame(caer);
+  }
+  addEventListener("resize", function () { medir(); sembrar(); if (reducir) pintar(); });
+  medir(); sembrar();
+  if (!reducir) requestAnimationFrame(caer);
+  else pintar();
+})();
+</script>
