@@ -2,27 +2,26 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap">
 
 <style>
-/* Layout: diciembre en pastel. Petalos de jazmin cayendo de fondo, arriba el nombre
-   y el contador, abajo una reja de 24 puertas que rotan entre celeste, verde,
-   violeta y amarillo. Cada puerta abre una ficha con su mensaje.
-   Un solo tema: claro. */
+/* Layout: una noche de diciembre. Fondo violeta profundo, petalos de jazmin
+   cayendo, y 24 puertas que estan apagadas hasta el dia que les toca: ahi se
+   encienden como ventanas. Dos colores: violeta para el mes, celeste para hoy.
+   Un solo tema: oscuro, a proposito, para que no se parezca al album. */
 :root{
-  color-scheme: light;
-  --fondo:#f7faf6;
-  --carta:#ffffff;
-  --tinta:#39453f;
-  --tinta-tenue:#7f8d84;
-  --linea:#e3e9df;
+  color-scheme: dark;
+  --noche:#272143;
+  --noche-2:#1d1835;
+  --panel:#2f2851;
+  --panel-2:#3b3163;
+  --tinta:#f1ecfb;
+  --tinta-tenue:#a79bc6;
+  --linea:#433970;
 
-  --celeste:#aadcea;
-  --celeste-h:#3f8aa7;
-  --amarillo:#f8d976;
-  --amarillo-h:#a97f14;
-  --verde:#b9dcc0;
-  --verde-h:#49825c;
   --violeta:#cbb8e6;
-  --violeta-h:#6a4f9c;
+  --violeta-sub:#9c87c6;
+  --celeste:#a9d9ea;
+  --celeste-sub:#71aac6;
   --jazmin:#ffffff;
+  --amarillo:#f6e6ad;   /* unicamente el corazon de los jazmines */
 
   --display:"Gilda Display", "Didot", Georgia, serif;
   --cuerpo:"Figtree", "Segoe UI", system-ui, sans-serif;
@@ -31,11 +30,13 @@
   --max:58rem;
 }
 *{box-sizing:border-box}
+html{background:var(--noche)}
 body{
+  min-height:100svh;
   background:
-    radial-gradient(120% 70% at 50% -8%, #e7f4f8 0%, rgba(231,244,248,0) 58%),
-    radial-gradient(95% 55% at 50% 104%, #f3eefb 0%, rgba(243,238,251,0) 62%),
-    var(--fondo);
+    radial-gradient(125% 62% at 50% -12%, #3d3269 0%, rgba(61,50,105,0) 58%),
+    radial-gradient(95% 50% at 50% 106%, #2c4c5e 0%, rgba(44,76,94,0) 64%),
+    var(--noche);
   color:var(--tinta);
   font-family:var(--cuerpo);
   font-size:1.0625rem;
@@ -65,35 +66,35 @@ main{position:relative;z-index:1}
 .ornamento i{display:block;height:1px;width:clamp(16px,7vw,46px);background:linear-gradient(90deg,transparent,var(--linea))}
 .ornamento i:last-child{background:linear-gradient(90deg,var(--linea),transparent)}
 .fl{display:block;width:20px;height:20px;flex:0 0 auto}
-.fl.j{color:var(--celeste)}
+.fl.j{color:var(--jazmin)}
 .fl.v{color:var(--violeta)}
-.fl.g{color:var(--verde)}
+.fl.g{color:var(--celeste)}
 .fl.a{width:16px;height:16px}
-.flor-puerta{position:absolute;top:7px;left:8px;width:14px;height:14px}
+.flor-puerta{position:absolute;top:7px;left:8px;width:14px;height:14px;opacity:.9}
 
 /* ---------- Encabezado ---------- */
 .tapa{padding-block:clamp(3rem,9vh,5rem) clamp(2rem,5vh,3rem)}
 .tapa .wrap{display:flex;flex-direction:column;gap:1.1rem;align-items:center;text-align:center}
 .estrella{display:flex;align-items:center;gap:.65rem;animation:subir .9s ease-out both}
-.estrella i{display:block;width:30px;height:1px;background:var(--celeste-h);opacity:.5}
+.estrella i{display:block;width:30px;height:1px;background:var(--celeste-sub);opacity:.6}
 .tapa h1{
   font-size:clamp(2.3rem,9.5vw,4.25rem);
   animation:subir 1s .1s ease-out both;
+  text-shadow:0 0 42px rgba(203,184,230,.3);
 }
-.tapa h1 span{display:block;color:var(--violeta-h);font-size:.42em;margin-top:.45em}
-.tapa .intro{color:#55615b;max-width:34rem;animation:subir 1s .2s ease-out both}
+.tapa h1 span{display:block;color:var(--celeste);font-size:.42em;margin-top:.45em;text-shadow:none}
+.tapa .intro{color:#c8bfe0;max-width:34rem;animation:subir 1s .2s ease-out both}
 .marcador{
   display:inline-flex;align-items:center;gap:.65rem;
   padding:.7rem 1.2rem;border:1px solid var(--linea);border-radius:999px;
-  background:var(--carta);
-  box-shadow:0 12px 28px -24px rgba(57,69,63,.7);
+  background:rgba(255,255,255,.05);
   animation:subir 1s .3s ease-out both;
 }
-.marcador b{font-family:var(--dato);font-weight:500;font-size:.75rem;letter-spacing:.1em;color:var(--celeste-h);font-variant-numeric:tabular-nums}
+.marcador b{font-family:var(--dato);font-weight:500;font-size:.75rem;letter-spacing:.1em;color:var(--celeste);font-variant-numeric:tabular-nums}
 .marcador span{font-family:var(--dato);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-tenue)}
 .marcador i{display:block;width:1px;height:14px;background:var(--linea)}
 
-/* ---------- La reja de puertas ---------- */
+/* ---------- La reja: ventanas apagadas y encendidas ---------- */
 .reja{padding-block:clamp(1.5rem,4vw,2.5rem) clamp(3.5rem,10vw,6rem)}
 .puertas{
   display:grid;
@@ -104,62 +105,66 @@ main{position:relative;z-index:1}
   position:relative;aspect-ratio:1;min-width:0;
   display:grid;place-items:center;gap:.2rem;
   padding:.5rem;border-radius:4px;cursor:pointer;font:inherit;color:inherit;
-  border:1px solid var(--linea);
-  background:var(--carta);
-  box-shadow:0 10px 24px -22px rgba(57,69,63,.75);
+  border:1px solid var(--violeta-sub);
+  background:linear-gradient(180deg,var(--panel-2),var(--panel));
+  box-shadow:0 0 24px -9px rgba(203,184,230,.5), inset 0 1px 0 rgba(255,255,255,.08);
   transition:transform .2s ease, box-shadow .2s ease;
-}
-.puerta:nth-child(4n+1){--acento:var(--celeste);--acento-h:var(--celeste-h)}
-.puerta:nth-child(4n+2){--acento:var(--verde);--acento-h:var(--verde-h)}
-.puerta:nth-child(4n+3){--acento:var(--violeta);--acento-h:var(--violeta-h)}
-.puerta:nth-child(4n+4){--acento:var(--amarillo);--acento-h:var(--amarillo-h)}
-.puerta::before{
-  content:"";position:absolute;inset:0;border-radius:3px;
-  background:var(--acento);opacity:.16;
 }
 .puerta .n{
   position:relative;
   font-family:var(--display);font-size:clamp(1.5rem,6vw,2rem);line-height:1;
-  color:var(--acento-h);font-variant-numeric:tabular-nums;
+  color:var(--violeta);font-variant-numeric:tabular-nums;
 }
 .puerta .marca{
   position:relative;
   font-family:var(--dato);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--tinta-tenue);
+  color:var(--violeta-sub);
 }
-.puerta:hover{transform:translateY(-2px);box-shadow:0 16px 30px -22px rgba(57,69,63,.85)}
-.puerta:focus-visible{outline:2px solid var(--acento-h);outline-offset:3px}
+.puerta:hover{transform:translateY(-2px);box-shadow:0 0 32px -6px rgba(203,184,230,.65), inset 0 1px 0 rgba(255,255,255,.1)}
+.puerta:focus-visible{outline:2px solid var(--celeste);outline-offset:3px}
 
+/* apagada: todavia no le toca */
 .puerta[disabled]{
-  cursor:not-allowed;border-style:dashed;border-color:#dde3d9;
-  background:#fbfcfa;transform:none;box-shadow:none;
+  cursor:not-allowed;border-style:dashed;border-color:#372f5d;
+  background:#241e40;box-shadow:none;transform:none;
 }
-.puerta[disabled]::before{opacity:.05}
-.puerta[disabled] .n{color:#aab4ac}
-.puerta[disabled] .marca{color:#bcc5bd}
+.puerta[disabled] .n{color:#5e5389}
+.puerta[disabled] .marca{color:#4f4677}
 
-.puerta.hoy{border-color:var(--amarillo-h)}
-.puerta.hoy::before{background:var(--amarillo);opacity:.4}
-.puerta.hoy .n{color:#8a6708}
-.puerta.hoy .marca{color:#8a6708}
+/* la de hoy: la unica en celeste */
+.puerta.hoy{
+  border-color:var(--celeste-sub);
+  background:linear-gradient(180deg,#36486d,#2b3a5b);
+  box-shadow:0 0 34px -5px rgba(169,217,234,.6), inset 0 1px 0 rgba(255,255,255,.12);
+}
+.puerta.hoy .n{color:var(--celeste)}
+.puerta.hoy .marca{color:var(--celeste)}
 
 .puerta.vista::after{
   content:"";position:absolute;top:8px;right:8px;width:5px;height:5px;border-radius:50%;
-  background:var(--verde-h);opacity:.6;
+  background:var(--celeste);opacity:.8;
 }
-.puerta.final{border-color:var(--violeta-h)}
-.puerta.final::before{background:var(--violeta);opacity:.38}
-.puerta.final .n{color:var(--violeta-h)}
-.puerta.final[disabled]{border-style:solid;border-color:#ddd2ee}
-.puerta.final[disabled]::before{opacity:.14}
-.puerta.final[disabled] .n{color:#a394bd}
+
+/* la 24: la mas encendida de todas */
+.puerta.final{
+  border-color:var(--violeta);
+  background:linear-gradient(180deg,#4d3f7e,#3a3063);
+  box-shadow:0 0 38px -5px rgba(203,184,230,.7), inset 0 1px 0 rgba(255,255,255,.14);
+}
+.puerta.final .n{color:#f4eeff}
+.puerta.final .marca{color:var(--violeta)}
+.puerta.final[disabled]{
+  border-style:solid;border-color:#423769;background:#262046;box-shadow:none;
+}
+.puerta.final[disabled] .n{color:#7b6ca8}
+.puerta.final[disabled] .marca{color:#6a5c96}
 
 .nota{margin-top:1.75rem;display:flex;flex-direction:column;gap:.35rem}
 
 /* ---------- Ficha ---------- */
 #ficha{
   position:fixed;inset:0;z-index:40;
-  background:rgba(240,245,239,.95);
+  background:rgba(14,11,28,.88);
   display:grid;place-items:center;
   padding:max(16px, env(safe-area-inset-top,0px)) max(16px, env(safe-area-inset-right,0px)) max(16px, env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-left,0px));
 }
@@ -168,25 +173,25 @@ main{position:relative;z-index:1}
   display:flex;flex-direction:column;gap:1.1rem;
   padding:clamp(1.5rem,5vw,2.5rem);
   border:1px solid var(--linea);border-radius:5px;
-  background:var(--carta);
-  box-shadow:0 40px 80px -45px rgba(57,69,63,.65);
+  background:linear-gradient(180deg,#352d5a,#292345);
+  box-shadow:0 50px 90px -40px rgba(0,0,0,.85), 0 0 60px -30px rgba(203,184,230,.35);
 }
 #ficha .cabeza{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
-#ficha .dia{font-family:var(--display);font-size:clamp(2.75rem,12vw,4rem);line-height:.9;color:var(--celeste-h)}
-#ficha .texto{color:#4f5b55;line-height:1.72}
+#ficha .dia{font-family:var(--display);font-size:clamp(2.75rem,12vw,4rem);line-height:.9;color:var(--celeste)}
+#ficha .texto{color:#ded6f0;line-height:1.72}
 #ficha .foto{width:100%;border-radius:3px;border:1px solid var(--linea);display:block}
 #ficha .vale{
-  border:1px dashed var(--amarillo-h);border-radius:4px;padding:1.15rem 1.3rem;
-  display:flex;flex-direction:column;gap:.5rem;background:#fdf8e9;
+  border:1px dashed var(--celeste-sub);border-radius:4px;padding:1.15rem 1.3rem;
+  display:flex;flex-direction:column;gap:.5rem;background:rgba(169,217,234,.09);
 }
-#ficha .vale .eti{font-family:var(--dato);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amarillo-h)}
-#ficha .vale p{font-family:var(--display);font-size:1.4rem;line-height:1.3;color:#6f5307}
+#ficha .vale .eti{font-family:var(--dato);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--celeste)}
+#ficha .vale p{font-family:var(--display);font-size:1.4rem;line-height:1.3;color:#e8f5fb}
 .cerrar{
   width:40px;height:40px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;
-  background:#f4f7f2;border:1px solid var(--linea);color:var(--tinta);cursor:pointer;
+  background:rgba(255,255,255,.07);border:1px solid var(--linea);color:var(--tinta);cursor:pointer;
 }
-.cerrar:hover{background:#eaf0e8}
-.cerrar:focus-visible{outline:2px solid var(--celeste-h);outline-offset:2px}
+.cerrar:hover{background:rgba(255,255,255,.13)}
+.cerrar:focus-visible{outline:2px solid var(--celeste);outline-offset:2px}
 
 @keyframes subir{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
@@ -210,17 +215,6 @@ main{position:relative;z-index:1}
       </g>
       <circle cx="12" cy="12" r="2.1" style="fill:var(--amarillo)"/>
     </symbol>
-    <symbol id="flor" viewBox="0 0 24 24">
-      <g style="fill:var(--amarillo)">
-        <circle cx="12" cy="5.6" r="3.5"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(60 12 12)"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(120 12 12)"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(180 12 12)"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(240 12 12)"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(300 12 12)"/>
-      </g>
-      <circle cx="12" cy="12" r="2.8" style="fill:var(--amarillo-h)"/>
-    </symbol>
   </defs>
 </svg>
 
@@ -234,7 +228,7 @@ main{position:relative;z-index:1}
       <p class="ornamento" aria-hidden="true">
         <i></i>
         <svg class="fl j"><use href="#jazmin"></use></svg>
-        <svg class="fl a"><use href="#flor"></use></svg>
+        <svg class="fl g"><use href="#jazmin"></use></svg>
         <svg class="fl v"><use href="#jazmin"></use></svg>
         <i></i>
       </p>
@@ -248,8 +242,8 @@ main{position:relative;z-index:1}
       <div class="puertas" id="puertas"></div>
       <div class="nota">
         <p class="ornamento" style="justify-content:flex-start" aria-hidden="true">
+          <svg class="fl v"><use href="#jazmin"></use></svg>
           <svg class="fl g"><use href="#jazmin"></use></svg>
-          <svg class="fl a"><use href="#flor"></use></svg>
           <i></i>
         </p>
         <p class="dato">cómo funciona</p>
@@ -375,8 +369,8 @@ var NAVIDAD = {
 
     if (libre && (esHoy || n === 24)) {
       b.insertAdjacentHTML("afterbegin",
-        '<svg class="fl ' + (esHoy ? "j" : "a") + ' flor-puerta" aria-hidden="true"><use href="#' +
-        (esHoy ? "jazmin" : "flor") + '"></use></svg>');
+        '<svg class="fl ' + (esHoy ? "j" : "v") + ' flor-puerta" aria-hidden="true">' +
+        '<use href="#jazmin"></use></svg>');
     }
 
     if (!libre) {
@@ -463,7 +457,7 @@ var NAVIDAD = {
   /* petalos de jazmin cayendo (en diciembre, aca, es lo que florece) */
   var cv = $("#petalos"), ctx = cv.getContext("2d");
   var lluvia = [];
-  var tintas = ["#aadcea", "#cbb8e6", "#f8d976", "#b9dcc0", "#ffffff"];
+  var tintas = ["#ffffff", "#cbb8e6", "#a9d9ea", "#e7dcf5", "#ffffff"];
   function medir() {
     var r = Math.min(2, window.devicePixelRatio || 1);
     cv.width = innerWidth * r;
@@ -482,7 +476,7 @@ var NAVIDAD = {
         vx: (Math.random() - 0.5) * 0.35,
         g: Math.random() * Math.PI,
         vg: (Math.random() - 0.5) * 0.022,
-        a: 0.3 + Math.random() * 0.45,
+        a: 0.35 + Math.random() * 0.5,
         c: tintas[Math.floor(Math.random() * tintas.length)]
       });
     }
