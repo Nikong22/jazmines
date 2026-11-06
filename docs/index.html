@@ -61,15 +61,13 @@ p{margin:0}
   text-transform:uppercase;color:var(--tinta-tenue);
 }
 
-/* ---------- Jazmines y flores ---------- */
-.ornamento{display:flex;align-items:center;justify-content:center;gap:.5rem}
+/* ---------- Flores ---------- */
+.ornamento{display:flex;align-items:center;justify-content:center;gap:.7rem}
 .ornamento i{display:block;height:1px;width:clamp(16px,7vw,46px);background:linear-gradient(90deg,transparent,var(--linea))}
 .ornamento i:last-child{background:linear-gradient(90deg,var(--linea),transparent)}
-.fl{display:block;width:20px;height:20px;flex:0 0 auto}
-.fl.j{color:var(--petalo)}
-.fl.v{color:var(--hoja)}
-.fl.g{color:var(--verde)}
-.fl.a{width:16px;height:16px}
+.fl{display:block;width:30px;height:30px;flex:0 0 auto}
+.ramo{display:block;flex:0 0 auto;width:clamp(116px,28vw,168px);aspect-ratio:200/82;height:auto}
+.ramo.grande{width:clamp(176px,48vw,264px)}
 
 /* ---------- 1. Portada ---------- */
 .portada{
@@ -291,26 +289,86 @@ p{margin:0}
 
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden">
   <defs>
-    <symbol id="jazmin" viewBox="0 0 24 24">
-      <g fill="currentColor">
-        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2"/>
-        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(72 12 12)"/>
-        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(144 12 12)"/>
-        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(216 12 12)"/>
-        <ellipse cx="12" cy="6.2" rx="2.7" ry="5.2" transform="rotate(288 12 12)"/>
-      </g>
-      <circle cx="12" cy="12" r="2.1" style="fill:var(--amarillo)"/>
+    <linearGradient id="am-petalo" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#fdf2c6"/>
+      <stop offset="48%" stop-color="#f9dc85"/>
+      <stop offset="100%" stop-color="#edc04c"/>
+    </linearGradient>
+    <linearGradient id="am-petalo-atras" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#f6d87f"/>
+      <stop offset="100%" stop-color="#dfae3e"/>
+    </linearGradient>
+    <radialGradient id="am-centro" cx="38%" cy="34%" r="74%">
+      <stop offset="0%" stop-color="#e8bb4a"/>
+      <stop offset="58%" stop-color="#c9931d"/>
+      <stop offset="100%" stop-color="#8f6409"/>
+    </radialGradient>
+    <linearGradient id="am-hoja" x1="18%" y1="0%" x2="82%" y2="100%">
+      <stop offset="0%" stop-color="#cfe4c4"/>
+      <stop offset="100%" stop-color="#86b07b"/>
+    </linearGradient>
+
+    <!-- un petalo: ancho, con la punta redondeada -->
+    <path id="am-p" d="M50 50C40 42 33.5 25.5 40 12.5 43 6.2 47 3 50 3c3 0 7 3.2 10 9.5 6.5 13 0 29.5-10 37.5Z"/>
+
+    <symbol id="hoja" viewBox="0 0 100 100">
+      <path d="M50 4c17 15 24 33 24 46 0 17-11 32-24 46C37 82 26 67 26 50c0-13 7-31 24-46Z" fill="url(#am-hoja)"/>
+      <path d="M50 10v80" stroke="#7fa474" stroke-width="2.4" stroke-linecap="round" opacity=".45" fill="none"/>
+      <path d="M50 34 38 44M50 34 62 44M50 52 39 62M50 52 61 62" stroke="#7fa474" stroke-width="1.6" stroke-linecap="round" opacity=".3" fill="none"/>
     </symbol>
-    <symbol id="flor" viewBox="0 0 24 24">
-      <g style="fill:var(--amarillo)">
-        <circle cx="12" cy="5.6" r="3.5"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(60 12 12)"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(120 12 12)"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(180 12 12)"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(240 12 12)"/>
-        <circle cx="12" cy="5.6" r="3.5" transform="rotate(300 12 12)"/>
+
+    <!-- la flor: ocho petalos adelante y ocho corridos atras, para que tenga fondo -->
+    <symbol id="flor" viewBox="0 0 100 100">
+      <g fill="url(#am-petalo-atras)" opacity=".92">
+        <use href="#am-p" transform="rotate(23 50 50)"/>
+        <use href="#am-p" transform="rotate(68 50 50)"/>
+        <use href="#am-p" transform="rotate(113 50 50)"/>
+        <use href="#am-p" transform="rotate(157 50 50)"/>
+        <use href="#am-p" transform="rotate(202 50 50)"/>
+        <use href="#am-p" transform="rotate(246 50 50)"/>
+        <use href="#am-p" transform="rotate(291 50 50)"/>
+        <use href="#am-p" transform="rotate(336 50 50)"/>
       </g>
-      <circle cx="12" cy="12" r="2.8" style="fill:var(--amarillo-h)"/>
+      <g fill="url(#am-petalo)">
+        <use href="#am-p"/>
+        <use href="#am-p" transform="rotate(46 50 50)"/>
+        <use href="#am-p" transform="rotate(89 50 50)"/>
+        <use href="#am-p" transform="rotate(134 50 50)"/>
+        <use href="#am-p" transform="rotate(179 50 50)"/>
+        <use href="#am-p" transform="rotate(223 50 50)"/>
+        <use href="#am-p" transform="rotate(268 50 50)"/>
+        <use href="#am-p" transform="rotate(313 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="13.2" fill="url(#am-centro)"/>
+      <g fill="#f7e2a0" opacity=".6">
+        <circle cx="50" cy="41.6" r="1.5"/><circle cx="56" cy="44" r="1.4"/>
+        <circle cx="58.4" cy="50" r="1.5"/><circle cx="56" cy="56" r="1.4"/>
+        <circle cx="50" cy="58.4" r="1.5"/><circle cx="44" cy="56" r="1.4"/>
+        <circle cx="41.6" cy="50" r="1.5"/><circle cx="44" cy="44" r="1.4"/>
+        <circle cx="50" cy="46.8" r="1.2"/><circle cx="53" cy="52.6" r="1.1"/><circle cx="47" cy="52.6" r="1.1"/>
+      </g>
+      <circle cx="45.2" cy="45.2" r="4.4" fill="#ffffff" opacity=".2"/>
+    </symbol>
+
+    <symbol id="capullo" viewBox="0 0 100 100">
+      <path d="M50 8c11 10 16 24 16 36 0 17-8 28-16 34-8-6-16-17-16-34 0-12 5-26 16-36Z" fill="url(#am-petalo)"/>
+      <path d="M50 8c6 10 9 24 9 36 0 17-4 28-9 34Z" fill="#e7b945" opacity=".45"/>
+      <path d="M34 58c4 14 10 24 16 30-12-2-20-14-20-26 0-2.2 1.8-4 4-4Z" fill="url(#am-hoja)"/>
+      <path d="M66 58c-4 14-10 24-16 30 12-2 20-14 20-26 0-2.2-1.8-4-4-4Z" fill="url(#am-hoja)"/>
+    </symbol>
+
+    <!-- la ramita que separa las secciones -->
+    <symbol id="rama" viewBox="0 0 200 82">
+      <g fill="none" stroke="#9cbb90" stroke-width="2.2" stroke-linecap="round">
+        <path d="M4 73C40 77 88 71 134 45"/>
+        <path d="M86 70C92 61 96 53 100 47"/>
+        <path d="M44 74C48 68 53 62 57 58"/>
+      </g>
+      <g transform="rotate(-36 34 60)"><use href="#hoja" x="20" y="46" width="28" height="28"/></g>
+      <g transform="rotate(28 76 64)"><use href="#hoja" x="61" y="49" width="30" height="30"/></g>
+      <use href="#capullo" x="47" y="46" width="23" height="23"/>
+      <use href="#flor" x="78" y="23" width="46" height="46"/>
+      <use href="#flor" x="118" y="5" width="64" height="64"/>
     </symbol>
   </defs>
 </svg>
@@ -322,9 +380,7 @@ p{margin:0}
       <h1>Feliz cumpleaños<em id="nombre">Mi amor</em></h1>
       <p class="ornamento" aria-hidden="true">
         <i></i>
-        <svg class="fl j"><use href="#jazmin"></use></svg>
-        <svg class="fl a"><use href="#flor"></use></svg>
-        <svg class="fl v"><use href="#jazmin"></use></svg>
+        <svg class="ramo grande"><use href="#rama"></use></svg>
         <i></i>
       </p>
       <div class="contador">
@@ -332,7 +388,7 @@ p{margin:0}
         <p class="dato" id="dias-txt">días juntos</p>
       </div>
       <div class="pista">
-        <svg class="fl g" aria-hidden="true"><use href="#jazmin"></use></svg>
+        <svg class="fl" aria-hidden="true"><use href="#flor"></use></svg>
         <p class="dato">bajá despacio</p>
       </div>
     </div>
@@ -342,8 +398,7 @@ p{margin:0}
     <div class="wrap">
       <div class="titulo-seccion">
         <p class="ornamento" aria-hidden="true">
-          <svg class="fl j"><use href="#jazmin"></use></svg>
-          <svg class="fl a"><use href="#flor"></use></svg>
+          <svg class="ramo"><use href="#rama"></use></svg>
           <i></i>
         </p>
         <p class="dato">hoja por hoja</p>
@@ -358,8 +413,7 @@ p{margin:0}
     <div class="wrap">
       <div class="titulo-seccion">
         <p class="ornamento" aria-hidden="true">
-          <svg class="fl g"><use href="#jazmin"></use></svg>
-          <svg class="fl a"><use href="#flor"></use></svg>
+          <svg class="ramo"><use href="#rama"></use></svg>
           <i></i>
         </p>
         <p class="dato">abrí los que quieras</p>
@@ -374,7 +428,7 @@ p{margin:0}
     <div class="wrap">
       <div class="titulo-seccion">
         <p class="ornamento" aria-hidden="true">
-          <svg class="fl j"><use href="#jazmin"></use></svg>
+          <svg class="ramo"><use href="#rama"></use></svg>
           <i></i>
         </p>
         <p class="dato">para ver</p>
@@ -391,8 +445,7 @@ p{margin:0}
     <div class="wrap">
       <div class="titulo-seccion">
         <p class="ornamento" aria-hidden="true">
-          <svg class="fl v"><use href="#jazmin"></use></svg>
-          <svg class="fl a"><use href="#flor"></use></svg>
+          <svg class="ramo"><use href="#rama"></use></svg>
           <i></i>
         </p>
         <p class="dato">las sueltas</p>
@@ -409,9 +462,7 @@ p{margin:0}
       <h2 id="carta-titulo">Una carta, para terminar</h2>
       <div class="cuerpo-carta" id="carta-cuerpo"></div>
       <p class="ornamento" style="justify-content:flex-start" aria-hidden="true">
-        <svg class="fl j"><use href="#jazmin"></use></svg>
-        <svg class="fl a"><use href="#flor"></use></svg>
-        <svg class="fl v"><use href="#jazmin"></use></svg>
+        <svg class="ramo"><use href="#rama"></use></svg>
         <i></i>
       </p>
       <p class="cierre" id="carta-firma"></p>
@@ -793,7 +844,7 @@ var DATOS = {
   addEventListener("resize", medir);
   medir();
 
-  var colores = ["#f7d978", "#bcd9b4", "#ffffff", "#ecd08f", "#d3e4c7"];
+  var colores = ["#f9dc85", "#edc04c", "#fdf2c6", "#cfe4c4", "#ffffff"];
   function soltar() {
     for (var i = 0; i < 140; i++) {
       trozos.push({
@@ -819,8 +870,12 @@ var DATOS = {
       ctx.translate(p.x, p.y);
       ctx.rotate(p.g);
       ctx.fillStyle = p.c;
+      var a = p.w / 2;
+      var b = (p.h / 2) * (0.38 + 0.62 * Math.abs(Math.cos(p.g)));
       ctx.beginPath();
-      ctx.ellipse(0, 0, p.w / 2, (p.h / 2) * Math.abs(Math.cos(p.g)), 0, 0, Math.PI * 2);
+      ctx.moveTo(0, b);
+      ctx.bezierCurveTo(a, b * 0.3, a * 0.86, -b * 0.78, 0, -b);
+      ctx.bezierCurveTo(-a * 0.86, -b * 0.78, -a, b * 0.3, 0, b);
       ctx.fill();
       ctx.restore();
     });
