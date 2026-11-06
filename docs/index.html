@@ -301,13 +301,13 @@ p{margin:0}
     </radialGradient>
 
     <linearGradient id="ro-fuera" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#fdf5d6"/><stop offset="100%" stop-color="#f4da90"/>
+      <stop offset="0%" stop-color="#fdf4cf"/><stop offset="100%" stop-color="#f3d178"/>
     </linearGradient>
     <linearGradient id="ro-medio" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#f7d273"/><stop offset="100%" stop-color="#e7b23a"/>
+      <stop offset="0%" stop-color="#f1ca63"/><stop offset="100%" stop-color="#dda42a"/>
     </linearGradient>
     <linearGradient id="ro-dentro" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#e5ab33"/><stop offset="100%" stop-color="#c88a14"/>
+      <stop offset="0%" stop-color="#d79a1f"/><stop offset="100%" stop-color="#b87c0e"/>
     </linearGradient>
 
     <linearGradient id="tu-luz" x1="18%" y1="0%" x2="82%" y2="100%">
@@ -380,29 +380,30 @@ p{margin:0}
       <circle cx="44" cy="44" r="5" fill="#ffffff" opacity=".1"/>
     </symbol>
 
-    <!-- ROSA AMARILLA: tres vueltas que envuelven, con sombra entre una y otra -->
+    <!-- ROSA AMARILLA: de clara afuera a oscura en el centro, que es donde
+         cae la sombra. Cada vuelta compensa el ancho del borde segun su escala -->
     <symbol id="rosa" viewBox="0 0 100 100">
-      <g stroke="#d49c22" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round">
-        <g fill="url(#ro-fuera)">
+      <g stroke="#a97511" stroke-opacity=".55" stroke-linejoin="round">
+        <g fill="url(#ro-fuera)" stroke-width="2.2">
           <use href="#ro-p"/><use href="#ro-p" transform="rotate(73 50 50)"/>
           <use href="#ro-p" transform="rotate(144 50 50)"/><use href="#ro-p" transform="rotate(217 50 50)"/>
           <use href="#ro-p" transform="rotate(288 50 50)"/>
         </g>
-        <circle cx="50" cy="50" r="36" fill="#b07a10" opacity=".14" stroke="none"/>
-        <g fill="url(#ro-medio)" transform="translate(50 50) scale(.74) translate(-50 -50)">
+        <circle cx="50" cy="50" r="35" fill="#8f6207" opacity=".2" stroke="none"/>
+        <g fill="url(#ro-medio)" stroke-width="3" transform="translate(50 50) scale(.74) translate(-50 -50)">
           <use href="#ro-p" transform="rotate(40 50 50)"/><use href="#ro-p" transform="rotate(112 50 50)"/>
           <use href="#ro-p" transform="rotate(184 50 50)"/><use href="#ro-p" transform="rotate(256 50 50)"/>
           <use href="#ro-p" transform="rotate(328 50 50)"/>
         </g>
-        <circle cx="50" cy="50" r="21" fill="#a06d0c" opacity=".16" stroke="none"/>
-        <g fill="url(#ro-dentro)" transform="translate(50 50) scale(.46) translate(-50 -50)">
+        <circle cx="50" cy="50" r="20" fill="#7d5405" opacity=".22" stroke="none"/>
+        <g fill="url(#ro-dentro)" stroke-width="4.8" transform="translate(50 50) scale(.46) translate(-50 -50)">
           <use href="#ro-p" transform="rotate(18 50 50)"/><use href="#ro-p" transform="rotate(138 50 50)"/>
           <use href="#ro-p" transform="rotate(258 50 50)"/>
         </g>
       </g>
-      <g fill="none" stroke="#a87410" stroke-linecap="round">
-        <path d="M42.5 55c-3.5-7.5 1.5-14 8.5-13.8 7.5.2 11.8 7 8.4 13.2-3.2 5.8-11.4 7-16 2" stroke-width="2.4" opacity=".7"/>
-        <path d="M46.6 50.4c1.3-3.2 5.2-3.7 7-.4" stroke-width="1.9" opacity=".6"/>
+      <g fill="none" stroke="#8a5c06" stroke-linecap="round">
+        <path d="M41.5 55.5c-4-8.5 1.6-15.8 9.2-15.5 8.2.3 12.8 7.9 9 14.8-3.6 6.5-12.7 7.8-17.8 2.2" stroke-width="3" opacity=".75"/>
+        <path d="M46 50.6c1.5-3.6 5.9-4.2 8-.5" stroke-width="2.2" opacity=".65"/>
       </g>
     </symbol>
 
